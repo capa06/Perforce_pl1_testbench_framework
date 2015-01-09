@@ -29,7 +29,7 @@ import sys
 import logging
 import time
 import re
-from visa import *
+import visa
 
 # ********************************************************************
 
@@ -58,12 +58,12 @@ sys.path.append(os.sep.join(os.environ['PL1TESTBENCH_ROOT_FOLDER'].split(os.sep)
 
 # ********************************************************************
 
-from vxi_11 import vxi_11_connection
 
 from CfgError import CfgError
 
 
-rm = ResourceManager()
+
+
 
 
 
@@ -90,7 +90,7 @@ rm = ResourceManager()
 # ****************************************************************************************************
 
 
-class Anr(object):
+class Anritsu(object):
 
     def __init__(self, name, ip_addr):
 
@@ -99,12 +99,9 @@ class Anr(object):
         self.ip_addr = ip_addr
 
         logging.debug ('init-routine')
-
-        #self.dev = Anritsu_MT8820C(ip_addr, timeout=20)
         ip_socket='TCPIP0::'+ip_addr+'::56001::SOCKET'
+        rm = visa.ResourceManager()
         self.dev=rm.open_resource(ip_socket,read_termination='\n')
-        #self=rm.open_resource(ip_socket,read_termination='\n')
-        #self.dev = rohde_and_schwarz_CMW500(ip_addr, timeout=20)
         self.dev.write("*CLS")
 
         self.resultsFile = ""
@@ -200,13 +197,7 @@ class Anr(object):
     #======================================================================
 
     def close(self):
-
-        #self.write(r"GTL")
-
-        #self.dev.disconnect()
         self.write('GTL\n')
-
-        #self.dev.__del__()
         self.dev.clear()
         self.dev.close()
         del self
@@ -215,11 +206,11 @@ class Anr(object):
 
     def reset(self):
 
-        self.write(r'*CLS')
+        self.write('*CLS')
 
-        self.write("&ABO")
+        self.write('MEASSTOP')
 
-        self.write("&BRK")
+        self.write('CALLST')
 
         self.write("*RST")
 
@@ -229,7 +220,7 @@ class Anr(object):
 
         self.wait_for_completion()
 
-        self.write("&GTR")
+
 
 
 
@@ -278,8 +269,6 @@ class Anr(object):
         logger.debug ("   %s read command \"%s\"" % (self.name, command))
 
         self.dev.write(command)
-
-        #reading = self.dev.read()[2].strip()
         reading= self.dev.read()
         lettercount = 25
 
@@ -409,23 +398,26 @@ class Anr(object):
 
 
 
-        check_l   = {'CMW_BASE':(3, 2, 50), 'CMW_LTE_Sig':(3, 2, 81), 'CMW_WCDMA_Sig':(3,2,50), 'CMW_GSM_Sig':(3,2,50), }
-
+        #check_l   = {'CMW_BASE':(3, 2, 50), 'CMW_LTE_Sig':(3, 2, 81), 'CMW_WCDMA_Sig':(3,2,50), 'CMW_GSM_Sig':(3,2,50), }
+        #check_l   ={'ANR_BASE':'22.67 #008', 'ANR_WCDMA':'22,23, #008', 'ANR_GSM': '22,18,#006', 'ANR_LTE':'22,54,#009', }
+        check_l   ={'VERSION':(24,67), 'WCDMA':(22,23), 'GSM': (22,18), 'LTE':(22,64), }
         verdict_d = {0:'PASS', 1:'FAIL', 2:'UNKNOWN'}
 
 
 
         #cmwswinfo=self.read("SYSTem:BASE:OPTion:VERSion?")
-        anrswinfo=self.ask('TAGSEL? SYS')
+
+        anrswinfo=self.read('MCFV?')+' '+self.read('MCMSV?')
+        print anrswinfo
         self.wait_for_completion()
 
-        logger.debug("SYSTem:BASE:OPTion:VERSion? %s" % cmwswinfo)
+        logger.debug("System FW Version and SW Version? %s" % anrswinfo)
 
 
 
-        if not cmwswinfo:
+        if not anrswinfo:
 
-            logger.warning("Failed retrieving CMW info. SW version may be incorrect")
+            logger.warning("Failed retrieving Anritsu info. SW version may be incorrect")
 
             return 'None'
 
@@ -438,30 +430,29 @@ class Anr(object):
             verdict=2
 
             # Extract THE SW version string
-
-            tmp=re.compile('%s,[v|V|x|X][0-9]+[.][0-9]+[.][0-9]+' % k)
-
+            #tmp=re.compile('%s,[v|V|x|X]+[0-9]+[.][0-9]+[.][0-9]+' % k)
+            tmp=re.compile(k)
             check_str=k
 
-            if tmp.search(cmwswinfo):
+            if tmp.search(anrswinfo):
 
                 # here if string is detected
 
-                check_str=(tmp.search(cmwswinfo)).group()
+                check_str=(tmp.search(anrswinfo)).group()
 
                 # Extract the version number
 
-                tmp=re.compile('[.0-9]+')
+                tmp=re.compile('[.00-99]+')
 
-                xyz=((tmp.search(check_str)).group()).split('.')
+                xy=((tmp.search(check_str)).group()).split('.')
+                print xy
+                x=int(xy[0])
 
-                x=int(xyz[0])
+                y=int(xy[1])
 
-                y=int(xyz[1])
+                #z=int(xyz[2])
 
-                z=int(xyz[2])
-
-                if ((x>v[0]) or (x==v[0] and y>v[1]) or (x==v[0] and y==v[1] and z>=v[2])):
+                if ((x>v[0]) or (x==v[0] and y>v[1])):
 
                     verdict=0
 
@@ -469,7 +460,8 @@ class Anr(object):
 
                     verdict=1
 
-                    logger.error("Incorrect SW version %s. Required v%s.%s.%s or later" % (check_str, v[0], v[1], v[2]))
+
+                    logger.error("Incorrect SW version %s. Required v%s.%s or later" % (check_str, v[0], v[1],))
 
                     sys.exit(CfgError.ERRCODE_SYS_CMW_INCORRECT_SW_VERSION)
 
@@ -580,21 +572,31 @@ class Anr(object):
 
 
 if __name__ == '__main__':
-    '''
+
     #import visa
     #visa.log_to_screen()
-    anr=Anr('MT8820C','10.21.141.234')
+    anr=Anritsu('Anritsu','10.21.141.234')
     #anr.write('*IDN?')
     #anr.read('*IDN?')
     print anr.ask('*IDN?')
+    #anr.write('TAGSEL? SYSINFO')
+    print anr.read('MCFV?') #Firmware version
+    print anr.read('MCMSV?') #Measuring software version
+    print anr.read('MCOV?') #Tester OS version
     anr.write('CALLSA')
+    anr.wait_for_completion()
     print anr.ask('*ESR?')
     print anr.ask('*STB?')
     anr.write('CALLSO')
+    anr.wait_for_completion()
     anr.write('GTL\n')
     #print anr.ask('*ESR2?')
+    anr.wait_for_completion()
+    print anr.read_state()
+    cwswinfo='3.2.50,3.2.81,3.2.81,3.2.82'
+    print anr.check_sw_version()
     #time.sleep(2)
     anr.close()
-'''
 
-    pass
+
+#    pass
