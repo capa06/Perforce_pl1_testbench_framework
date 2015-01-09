@@ -1,0 +1,157 @@
+<testunit>
+	<common>
+		<!-- Test ID -->
+		<field name='testid' ></field>
+		<!-- RAT : {'LTE_FDD', 'LTE_TDD', 'LTE_FDD_CA', 'LTE_TDD_CA' -->
+		<field name='rat' ></field>
+		<!-- Test type, used for selecting the test procedure. Naming convention: <rat>_periodicity>_<descr>
+		    {'LTE_FDD_PERCL_BLER',            'LTE_TDD_PERCL_BLER',             'LTE_FDD_CA_PERCL_BLER',                 
+	         'LTE_FDD_PERCL_BLER_FADING',     'LTE_TDD_PERCL_BLER_FADING',      'LTE_FDD_CA_PERCL_BLER_FADING',
+	         'LTE_FDD_NIGHTLY_BLER',          'LTE_TDD_NIGHTLY_BLER',           'LTE_FDD_CA_NIGHTLY_BLER',              
+	         'LTE_FDD_NIGHTLY_BLER_FADING',   'LTE_TDD_NIGHTLY_BLER_FADING',    'LTE_FDD_CA_NIGHTLY_BLER_FADING',      
+	         'LTE_FDD_WEEKLY_BLER',           'LTE_TDD_WEEKLY_BLER',            'LTE_FDD_CA_WEEKLY_BLER',
+	         'LTE_FDD_WEEKLY_BLER_FADING',    'LTE_TDD_WEEKLY_BLER_FADING',     'LTE_FDD_CA_WEEKLY_BLER_FADING',        
+	         'LTE_FDD_MONTHLY_BLER',          'LTE_TDD_MONTHLY_BLER',           'LTE_FDD_CA_MONTHLY_BLER',
+	         'LTE_FDD_MONTHLY_BLER_FADING',   'LTE_TDD_MONTHLY_BLER_FADING',    'LTE_FDD_CA_MONTHLY_BLER_FADING',
+	         'LTE_FDD_CUSTOM_BLER',           'LTE_TDD_CUSTOM_BLER',            'LTE_FDD_CA_CUSTOM_BLER',               
+	         'LTE_FDD_CUSTOM_BLER_FADING',    'LTE_TDD_CUSTOM_BLER_FADING',     'LTE_FDD_CA_CUSTOM_BLER_FADING',               
+	         'LTE_FDD_CUSTOM_INTRA_HHO',      'LTE_TDD_CUSTOM_INTRA_HHO',       'LTE_FDD_CA_CUSTOM_INTRA_HHO',
+	         'LTE_FDD_CUSTOM_TA_FADING',      'LTE_TDD_CUSTOM_TA_FADING',       'LTE_FDD_CA_CUSTOM_TA_FADING'} -->
+		<field name='testtype' ></field>	
+		<!-- Test description -->
+		<field name='descr' ></field>
+	</common>
+	<pcc>
+		<!-- Duplex Mode, {FDD, TDD} -->
+		<field name='dmode' ></field>
+		<!-- DL/UL configuration -->
+		<field name='dlulconf' ></field>
+		<!-- SS configuration -->
+		<field name='ssconf' ></field>
+		<!-- Bandwidth MHz, {1.4, 3, 5, 10, 15, 20} MHz -->
+		<field name='bwmhz' ></field>
+		<!-- RF band -->
+		<field name='rfband' ></field>
+		<!-- EARFCN(RF band) -->
+		<field name='earfcn' ></field>
+		<!-- CP duration {'NORM', 'EXT'} -->
+		<field name='cp' ></field>
+		<!-- Supported Transmission Mode per BW { 1, 2, 3, 4 } -->
+		<field name='tm' ></field>
+		<!-- Supported TX antennas per TM { 1, 2, 3, 4 } -->
+		<field name='txants' ></field>
+		<!-- PMI configurations -->
+		<field name='pmi' ></field>
+		<!-- RSEPRE [dBm/15KHz] -->	
+		<field name='rsepre' ></field>
+		<!-- PA [dB] { 0, -3, -6 }-->	
+		<field name='pa' ></field>
+		<!-- pB [dB] { 0, 1, 2, 3 }-->	
+		<field name='pb' ></field>
+		<!-- Channel propagation type -->
+		<field name='chtype' ></field>
+		<!-- SNR [dB] {-3...33}-->		
+		<field name='snr' ></field>
+		<!-- Doppler Shift Hz -->
+		<field name='doppler' ></field>
+		<!-- CMW500 scheduler type { 'UDCH', 'UDTT', 'CQI'} -->	
+		<field name='schedtype' ></field>
+		<!-- Downlink HARQ -->	
+		<field name='harq' ></field>
+		<!-- DLMCS per BW -->	
+		<field name='dlmcs'     ></field>
+		<!-- DLNPRB per BW    -->	
+		<field name='dlnprb'    ></field>
+		<!-- DLRBSTART per BW -->	
+		<field name='dlrbstart' ></field>
+		<!-- ULMCS per BW     -->	
+		<field name='ulmcs'     ></field>
+		<!-- ULNPRB per BW    -->	
+		<field name='ulnprb'    ></field>
+		<!-- ULRBSTART per BW -->	
+		<field name='ulrbstart' ></field>
+	</pcc>
+	<scc>
+		<!-- Duplex Mode, {FDD, TDD} -->
+		<field name='dmode' ></field>
+		<!-- DL/UL configuration -->
+		<field name='dlulconf' ></field>
+		<!-- SS configuration -->
+		<field name='ssconf' ></field>
+		<!-- Bandwidth MHz, {1.4, 3, 5, 10, 15, 20} MHz -->
+		<field name='bwmhz' ></field>
+		<!-- RF band -->
+		<field name='rfband' ></field>
+		<!-- EARFCN(RF band) -->
+		<field name='earfcn' ></field>
+		<!-- CP duration {'NORM', 'EXT'} -->
+		<field name='cp' ></field>
+		<!-- Supported Transmission Mode per BW { 1, 2, 3, 4 } -->
+		<field name='tm' ></field>
+		<!-- Supported TX antennas per TM { 1, 2, 3, 4 } -->
+		<field name='txants' ></field>
+		<!-- PMI configurations -->
+		<field name='pmi' ></field>
+		<!-- RSEPRE [dBm/15KHz] -->	
+		<field name='rsepre' ></field>
+		<!-- PA [dB] { 0, -3, -6 }-->	
+		<field name='pa' ></field>
+		<!-- pB [dB] { 0, 1, 2, 3 }-->	
+		<field name='pb' ></field>
+		<!-- Channel propagation type -->
+		<field name='chtype' ></field>
+		<!-- SNR [dB] {-3...33}-->		
+		<field name='snr' ></field>
+		<!-- Doppler Shift Hz -->
+		<field name='doppler' ></field>
+		<!-- CMW500 scheduler type { 'UDCH', 'UDTT', 'CQI'} -->	
+		<field name='schedtype' ></field>
+		<!-- Downlink HARQ -->	
+		<field name='harq' ></field>
+		<!-- DLMCS per BW -->	
+		<field name='dlmcs'     ></field>
+		<!-- DLNPRB per BW    -->	
+		<field name='dlnprb'    ></field>
+		<!-- DLRBSTART per BW -->	
+		<field name='dlrbstart' ></field>
+		<!-- ULMCS per BW     -->	
+		<field name='ulmcs'     ></field>
+		<!-- ULNPRB per BW    -->	
+		<field name='ulnprb'    ></field>
+		<!-- ULRBSTART per BW -->	
+		<field name='ulrbstart' ></field>
+	</scc>
+</testunit>
+
+<!-- ************************************************************************************************** -->
+<!--                                           EXAMPLE                                                  -->
+<!-- ************************************************************************************************** -->
+<!-- <field name='descr' >"Full duplex link BLER test for CL validation - FDD mode"</field>             -->
+<!-- <field name='testtype' >"LTE_FDD_PERCL_BLER"</field>                                               -->
+<!-- <field name='testid' >0</field>                                                                    -->
+<!-- <field name='dmode' >"FDD"</field>                                                                 -->
+<!-- <field name='dlulconf' ></field>                                                                   -->
+<!-- <field name='ssconf' ></field>                                                                     -->
+<!-- <field name='bwmhz' >[1.4, 3, 5, 10, 15, 20]</field>                                               -->
+<!-- <field name='rfband' >[1]</field>                                                                  -->
+<!-- <field name='earfcn' >{1:[300]}</field>                                                            -->
+<!-- <field name='earfcn' >"NORM"</field>                                                               -->
+<!-- <field name='tm' >{1.4:[1,2,3], 3:[1,2,3], 5:[1,2,3], 10:[1,2,3], 15:[1,2,3], 20:[1,2,3]} </field> -->
+<!-- <field name='txants' >{1: [1], 2:[2], 3:[2], 4:[2] }</field>                                       -->
+<!-- <field name='pmi' >{ 1:{1:[None]}, 2:{2:[None]}, 3:{2:[None]}, 4:{ 2:[1]} }</field>                -->
+<!-- <field name='rsepre' >[-82.8]</field>                                                              -->	
+<!-- <field name='pa' >[-3]</field>                                                                     -->	
+<!-- <field name='pb' >[1]</field>                                                                      -->	
+<!-- <field name='chtype' >[None]</field>                                                               -->
+<!-- <field name='snr' >[None]</field>                                                                  -->		
+<!-- <field name='doppler' >[None]</field>                                                              -->
+<!-- <field name='schedtype' >"UDCH"</field>                                                            -->	
+<!-- <field name='harq' >{'NHRTX':None, 'RIV':None}</field>                                             -->	
+<!-- <field name='dlmcs'     >{1.4:[4], 3:[24], 5:[24], 10:[28], 15:[28], 20:[ 28]}</field>             -->	
+<!-- <field name='dlnprb'    >{1.4:[6], 3:[15], 5:[25], 10:[50], 15:[75], 20:[100]}</field>             -->	
+<!-- <field name='dlrbstart' >{1.4:[0], 3:[ 0], 5:[ 0], 10:[ 0], 15:[ 0], 20:[  0]}</field>             -->	
+<!-- <field name='ulmcs'     >{1.4:[10],3:[19], 5:[19], 10:[23], 15:[23], 20:[ 23]}</field>             -->	
+<!-- <field name='ulnprb'    >{1.4:[6], 3:[15], 5:[25], 10:[50], 15:[75], 20:[100]}</field>             -->			
+<!-- <field name='ulrbstart' >{1.4:[0], 3:[ 0], 5:[ 0], 10:[ 0], 15:[ 0], 20:[  0]}</field>             -->	
+<!-- ************************************************************************************************** -->
+

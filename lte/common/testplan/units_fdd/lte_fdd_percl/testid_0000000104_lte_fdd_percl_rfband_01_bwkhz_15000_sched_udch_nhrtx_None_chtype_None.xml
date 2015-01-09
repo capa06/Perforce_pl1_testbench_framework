@@ -1,0 +1,36 @@
+<testunit>
+	<common>
+		<field name='testid' >104</field>
+		<field name='rat' >"LTE_FDD"</field>
+		<field name='testtype' >"LTE_FDD_PERCL_BLER"</field>
+		<field name='descr' >"testid_0000000104_lte_fdd_percl_rfband_01_bwkhz_15000_sched_udch_nhrtx_None_chtype_None.xml"</field>
+	</common>
+	<pcc>
+		<field name='dmode' >"FDD"</field>
+		<field name='dlulconf' ></field>
+		<field name='ssconf' ></field>
+		<field name='bwmhz' >[15]</field>
+		<field name='rfband' >[1]</field>
+		<field name='earfcn' >{1: [300]}</field>
+		<field name='cp' >"NORM"</field>
+		<field name='tm' >{15:[1, 2, 3]} </field>
+		<field name='txants' >{1: [1], 2: [2], 3: [2], 4: [2]}</field>
+		<field name='pmi' >{1: {1: [None]}, 2: {2: [None]}, 3: {2: [None]}, 4: {2: [None]}}</field>
+		<field name='rsepre' >[-72.8]</field>
+		<field name='pa' >[-3]</field>
+		<field name='pb' >[1]</field>
+		<field name='chtype' >[None]</field>
+		<field name='snr' >[30]</field>
+		<field name='doppler' >[None]</field>
+		<field name='schedtype' >"UDCH"</field>
+		<field name='harq' >{'NHRTX':None, 'RIV':None}</field>
+		<field name='dlmcs'     >{15:[28]}</field>
+		<field name='dlnprb'    >{15:[75]}</field>
+		<field name='dlrbstart' >{15:[0]}</field>
+		<field name='ulmcs'     >{15:[23]}</field>
+		<field name='ulnprb'    >{15:[75]}</field>
+		<field name='ulrbstart' >{15:[0]}</field>
+	</pcc>
+	<scc>
+	</scc>
+</testunit>

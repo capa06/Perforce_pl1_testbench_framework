@@ -1,0 +1,96 @@
+<mysqldb>
+	<table_platforms>
+		<!-- <field name='platform_id' ></field> -->
+		<field name='platform' ></field>
+		<field name='aux_info' ></field>		
+	</table_platforms>
+	<table_testinfos>
+		<!-- <field name='testinfo_id' ></field> -->
+		<field name='testid' ></field>
+		<field name='rat' ></field>
+		<field name='testtype' ></field>
+		<field name='descr' ></field>
+	</table_testinfos>
+	<table_testruns>
+		<!--  <field name='testrun_id' ></field> -->
+		<field name='timestamp' ></field>
+		<field name='branch' ></field>
+		<field name='clnum' ></field>
+		<field name='mod_files' ></field>
+		<field name='p4webrev' ></field>
+		<field name='testerinfo' ></field>
+		<field name='modeminfo' ></field>
+	</table_testruns>
+	<table_lte_params>
+		<!-- <field name='param_id' ></field> -->
+		<field name='testinfo_id' ></field>
+		<field name='carrier' ></field>
+		<field name='dmode' ></field>
+		<field name='dlulconf' ></field>
+		<field name='ssconf' ></field>
+		<field name='bwmhz' ></field>
+		<field name='rfband' ></field>
+		<field name='earfcn' ></field>
+		<field name='cp' ></field>
+		<field name='tm' ></field>
+		<field name='txants' ></field>
+		<field name='pmi' ></field>
+		<field name='rsepre' ></field>
+		<field name='pa' ></field>
+		<field name='pb' ></field>
+		<field name='chtype' ></field>
+		<field name='snr' ></field>
+		<field name='doppler' ></field>
+		<field name='schedtype' ></field>
+		<field name='nhrtx' ></field>
+		<field name='riv' ></field>
+		<field name='dlmcs' ></field>
+		<field name='dlnprb' ></field>
+		<field name='dlrbstart' ></field>
+		<field name='ulmcs' ></field>
+		<field name='ulnprb' ></field>
+		<field name='ulrbstart' ></field>
+	</table_lte_params>
+	<table_lte_results>
+		<!-- <field name='result_id' ></field> -->
+		<field name='testrun_id' ></field>
+		<field name='platform_id' ></field>
+		<field name='param_id' ></field>
+		<field name='param_pcc_id' ></field>
+		<field name='valid' ></field>
+		<field name='dlrely' ></field>
+		<field name='dlthr_Mbps' ></field>
+		<field name='dlthr_min_Mbps' ></field>
+		<field name='dlthr_max_Mbps' ></field>
+		<field name='dlbler' ></field>
+		<field name='cqi' ></field>
+		<field name='ack' ></field>
+		<field name='nack' ></field>
+		<field name='dtx' ></field>
+		<field name='sf_total' ></field>
+		<field name='sf_scheduled' ></field>
+		<field name='ulrely' ></field>
+		<field name='ulthr_Mbps' ></field>
+		<field name='ulbler' ></field>
+		<field name='crc_pass' ></field>
+		<field name='crc_fail' ></field>
+		<field name='best_dlthr_Mbps' ></field>
+		<field name='best_ulthr_Mbps' ></field>
+		<field name='tolerance' ></field>
+		<field name='verdict_dl' ></field>
+		<field name='verdict_ul' ></field>
+		<field name='voltage_V' ></field>
+		<field name='current_mA' ></field>
+		<field name='power_mW' ></field>
+		<field name='rank' ></field>
+		<field name='dlthr_cw1' ></field>
+		<field name='dlthr_cw2' ></field>
+		<field name='cqi_cw1' ></field>
+		<field name='cqi_cw2' ></field>
+		<field name='pmi_ri1' ></field>
+		<field name='pmi_ri2' ></field>
+		<field name='harq_cw1' ></field>
+		<field name='harq_cw2' ></field>		
+	</table_lte_results>
+</mysqldb>
+

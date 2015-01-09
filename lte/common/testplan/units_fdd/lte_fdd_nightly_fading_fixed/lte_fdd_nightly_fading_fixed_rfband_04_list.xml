@@ -1,0 +1,24 @@
+<testplan>
+	<testlist>
+		<field name='testunit_0000006106'>"lte/common/testplan/units_fdd/lte_fdd_nightly_fading_fixed/testid_0000006106_lte_fdd_nightly_rfband_04_bwkhz_10000_udch_nhrtx_None_awgn_tm_3_dlmcs_25.xml"</field>
+		<field name='testunit_0000006107'>"lte/common/testplan/units_fdd/lte_fdd_nightly_fading_fixed/testid_0000006107_lte_fdd_nightly_rfband_04_bwkhz_10000_udch_nhrtx_None_awgn_tm_3_dlmcs_27.xml"</field>
+		<field name='testunit_0000006108'>"lte/common/testplan/units_fdd/lte_fdd_nightly_fading_fixed/testid_0000006108_lte_fdd_nightly_rfband_04_bwkhz_10000_udch_nhrtx_None_eva5l_tm_3_dlmcs_25.xml"</field>
+		<field name='testunit_0000006109'>"lte/common/testplan/units_fdd/lte_fdd_nightly_fading_fixed/testid_0000006109_lte_fdd_nightly_rfband_04_bwkhz_10000_udch_nhrtx_None_eva5l_tm_3_dlmcs_27.xml"</field>
+		<field name='testunit_0000006110'>"lte/common/testplan/units_fdd/lte_fdd_nightly_fading_fixed/testid_0000006110_lte_fdd_nightly_rfband_04_bwkhz_10000_udch_nhrtx_None_eva5h_tm_3_dlmcs_25.xml"</field>
+		<field name='testunit_0000006111'>"lte/common/testplan/units_fdd/lte_fdd_nightly_fading_fixed/testid_0000006111_lte_fdd_nightly_rfband_04_bwkhz_10000_udch_nhrtx_None_eva5h_tm_3_dlmcs_27.xml"</field>
+		<field name='testunit_0000006112'>"lte/common/testplan/units_fdd/lte_fdd_nightly_fading_fixed/testid_0000006112_lte_fdd_nightly_rfband_04_bwkhz_10000_udch_nhrtx_None_etu70l_tm_3_dlmcs_25.xml"</field>
+		<field name='testunit_0000006113'>"lte/common/testplan/units_fdd/lte_fdd_nightly_fading_fixed/testid_0000006113_lte_fdd_nightly_rfband_04_bwkhz_10000_udch_nhrtx_None_etu70l_tm_3_dlmcs_27.xml"</field>
+		<field name='testunit_0000006114'>"lte/common/testplan/units_fdd/lte_fdd_nightly_fading_fixed/testid_0000006114_lte_fdd_nightly_rfband_04_bwkhz_10000_udch_nhrtx_None_etu300l_tm_3_dlmcs_25.xml"</field>
+		<field name='testunit_0000006115'>"lte/common/testplan/units_fdd/lte_fdd_nightly_fading_fixed/testid_0000006115_lte_fdd_nightly_rfband_04_bwkhz_10000_udch_nhrtx_None_etu300l_tm_3_dlmcs_27.xml"</field>
+		<field name='testunit_0000006116'>"lte/common/testplan/units_fdd/lte_fdd_nightly_fading_fixed/testid_0000006116_lte_fdd_nightly_rfband_04_bwkhz_20000_udch_nhrtx_None_awgn_tm_3_dlmcs_25.xml"</field>
+		<field name='testunit_0000006117'>"lte/common/testplan/units_fdd/lte_fdd_nightly_fading_fixed/testid_0000006117_lte_fdd_nightly_rfband_04_bwkhz_20000_udch_nhrtx_None_awgn_tm_3_dlmcs_27.xml"</field>
+		<field name='testunit_0000006118'>"lte/common/testplan/units_fdd/lte_fdd_nightly_fading_fixed/testid_0000006118_lte_fdd_nightly_rfband_04_bwkhz_20000_udch_nhrtx_None_eva5l_tm_3_dlmcs_25.xml"</field>
+		<field name='testunit_0000006119'>"lte/common/testplan/units_fdd/lte_fdd_nightly_fading_fixed/testid_0000006119_lte_fdd_nightly_rfband_04_bwkhz_20000_udch_nhrtx_None_eva5l_tm_3_dlmcs_27.xml"</field>
+		<field name='testunit_0000006120'>"lte/common/testplan/units_fdd/lte_fdd_nightly_fading_fixed/testid_0000006120_lte_fdd_nightly_rfband_04_bwkhz_20000_udch_nhrtx_None_eva5h_tm_3_dlmcs_25.xml"</field>
+		<field name='testunit_0000006121'>"lte/common/testplan/units_fdd/lte_fdd_nightly_fading_fixed/testid_0000006121_lte_fdd_nightly_rfband_04_bwkhz_20000_udch_nhrtx_None_eva5h_tm_3_dlmcs_27.xml"</field>
+		<field name='testunit_0000006122'>"lte/common/testplan/units_fdd/lte_fdd_nightly_fading_fixed/testid_0000006122_lte_fdd_nightly_rfband_04_bwkhz_20000_udch_nhrtx_None_etu70l_tm_3_dlmcs_25.xml"</field>
+		<field name='testunit_0000006123'>"lte/common/testplan/units_fdd/lte_fdd_nightly_fading_fixed/testid_0000006123_lte_fdd_nightly_rfband_04_bwkhz_20000_udch_nhrtx_None_etu70l_tm_3_dlmcs_27.xml"</field>
+		<field name='testunit_0000006124'>"lte/common/testplan/units_fdd/lte_fdd_nightly_fading_fixed/testid_0000006124_lte_fdd_nightly_rfband_04_bwkhz_20000_udch_nhrtx_None_etu300l_tm_3_dlmcs_25.xml"</field>
+		<field name='testunit_0000006125'>"lte/common/testplan/units_fdd/lte_fdd_nightly_fading_fixed/testid_0000006125_lte_fdd_nightly_rfband_04_bwkhz_20000_udch_nhrtx_None_etu300l_tm_3_dlmcs_27.xml"</field>
+	</testlist>
+</testplan>

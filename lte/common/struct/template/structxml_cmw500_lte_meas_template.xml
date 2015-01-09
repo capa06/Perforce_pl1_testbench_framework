@@ -1,0 +1,51 @@
+<cmw500_lte_meas>
+	<dlbler>
+		<!-- Downlink measurement reliability indicator -->
+		<field name='dlrely' ></field>
+		<field name='ack' ></field>
+		<field name='nack' ></field>
+		<!-- SF used -->		
+		<field name='sf_total' ></field>
+		<!-- DL throughput in Kpbs -->
+		<field name='dlthr' ></field>
+		<field name='dlthr_min' ></field>
+		<field name='dlthr_max' ></field>
+		<field name='dtx' ></field>
+		<!-- SF scheduled -->		
+		<field name='sf_scheduled' ></field>
+		<!-- Median CQI -->		
+		<field name='cqi' ></field>
+	</dlbler>
+	<ulbler>
+		<!-- Uplink measurement reliability indicator -->
+		<field name='ulrely' ></field>
+		<!-- Uplink BLER range {0..1} -->
+		<field name='ulbler' ></field>
+		<!-- Uplink throughput [Kbps] -->
+		<field name='ulthr' ></field>
+		<!-- Number of CRC pass % -->
+		<field name='crc_pass' ></field>
+		<!-- Number of CRC fail % -->
+		<field name='crc_fail' ></field>
+	</ulbler>
+	<rank>
+		<field name='rank' ></field>
+	</rank>
+	<dlthr>
+		<field name='dlthr_cw1' ></field>
+		<field name='dlthr_cw2' ></field>	
+	</dlthr>
+	<cqi>
+		<field name='cqi_cw1' ></field>
+		<field name='cqi_cw2' ></field>	
+	</cqi>
+	<pmi>
+		<field name='pmi_ri1' ></field>
+		<field name='pmi_ri2' ></field>	
+	</pmi>
+	<harq>	
+		<field name='harq_cw1' ></field>
+		<field name='harq_cw2' ></field>	
+	</harq>
+</cmw500_lte_meas>
+

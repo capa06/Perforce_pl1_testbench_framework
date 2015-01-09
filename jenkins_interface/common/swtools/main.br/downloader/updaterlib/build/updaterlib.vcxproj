@@ -1,0 +1,252 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|ARM">
+      <Configuration>Debug</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|ARM">
+      <Configuration>Release</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{0C255AB0-978D-4485-8681-BBCE5F84D6F0}</ProjectGuid>
+    <RootNamespace>updaterlib</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>$(ProjectDir)\..\public;$(ProjectDir)\..\..\..\ic-code;$(IncludePath)</IncludePath>
+    <OutDir>$(ProjectDir)..\bin\bin.wx32\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
+    <IncludePath>$(SolutionDir)..\public;$(SolutionDir)..\..\..\ic-code;$(IncludePath)</IncludePath>
+    <OutDir>$(SolutionDir)..\bin\bin.wa32\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IncludePath>$(ProjectDir)..\public;$(ProjectDir)..\..\..\ic-code;$(IncludePath)</IncludePath>
+    <OutDir>$(ProjectDir)..\bin\bin.wx32\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
+    <OutDir>$(ProjectDir)..\bin\bin.wa32\</OutDir>
+    <IncludePath>$(ProjectDir)..\public;$(ProjectDir)..\..\..\ic-code;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_WINDLL;WIN32;ENABLE_WINUSB;ENABLE_MBIM_DSS;VISUAL_EXPORTS;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;NDEBUG;_CONSOLE;ICERA_EXPORTS;_WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <DisableSpecificWarnings>4996;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <SDLCheck>true</SDLCheck>
+      <FunctionLevelLinking>
+      </FunctionLevelLinking>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles />
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <PrecompiledHeader />
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <OutputFile>$(ProjectDir)..\bin\bin.wx32\$(TargetName)$(TargetExt)</OutputFile>
+      <AdditionalDependencies>msvcrt.lib;libcmtd.lib;libcmt.lib;setupapi.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ImportLibrary>
+      </ImportLibrary>
+      <AdditionalOptions />
+      <SubSystem>
+      </SubSystem>
+      <OptimizeReferences>
+      </OptimizeReferences>
+      <EnableCOMDATFolding>
+      </EnableCOMDATFolding>
+      <LinkTimeCodeGeneration />
+      <EntryPointSymbol>DllMain</EntryPointSymbol>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_WINDLL;WIN32;ENABLE_WINUSB;ENABLE_MBIM_DSS;VISUAL_EXPORTS;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;NDEBUG;_CONSOLE;ICERA_EXPORTS;_WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <DisableSpecificWarnings>4996;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <SDLCheck>true</SDLCheck>
+      <FunctionLevelLinking>
+      </FunctionLevelLinking>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>
+      </ForcedIncludeFiles>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <OutputFile>$(ProjectDir)..\bin\bin.wa32\$(TargetName)$(TargetExt)</OutputFile>
+      <AdditionalDependencies>msvcrt.lib;libcmtd.lib;libcmt.lib;setupapi.lib;ws2_32.lib;oldnames.lib;mbnapi_uuid.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ImportLibrary>
+      </ImportLibrary>
+      <AdditionalOptions>
+      </AdditionalOptions>
+      <SubSystem>
+      </SubSystem>
+      <OptimizeReferences>
+      </OptimizeReferences>
+      <EnableCOMDATFolding>
+      </EnableCOMDATFolding>
+      <LinkTimeCodeGeneration>
+      </LinkTimeCodeGeneration>
+      <EntryPointSymbol>DllMain</EntryPointSymbol>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_WINDLL;WIN32;ENABLE_WINUSB;ENABLE_MBIM_DSS;VISUAL_EXPORTS;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;NDEBUG;_CONSOLE;ICERA_EXPORTS;_WIN32;_X86_=1;i386=1;STD_CALL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <TreatWChar_tAsBuiltInType>false</TreatWChar_tAsBuiltInType>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>oldnames.lib;mbnapi_uuid.lib;setupapi.lib;ws2_32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_WINDLL;WIN32;ENABLE_WINUSB;ENABLE_MBIM_DSS;VISUAL_EXPORTS;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;NDEBUG;_CONSOLE;ICERA_EXPORTS;_WIN32;%(PreprocessorDefinitions);_ARM_WINAPI_PARTITION_DESKTOP_SDK_AVAILABLE=1;%(ClCompile.PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <OutputFile>$(ProjectDir)..\bin\bin.wa32\$(TargetName)$(TargetExt)</OutputFile>
+      <AdditionalDependencies>msvcrt.lib;libcmtd.lib;libcmt.lib;setupapi.lib;ws2_32.lib;oldnames.lib;mbnapi_uuid.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\ic-code\ic-at-port-mbim.h" />
+    <ClInclude Include="..\..\..\ic-code\ic-at-port-socket.h" />
+    <ClInclude Include="..\..\..\ic-code\ic-at-port-util.h" />
+    <ClInclude Include="..\..\..\ic-code\ic-at-port-winusb.h" />
+    <ClInclude Include="..\..\..\ic-code\ic-at-port.h" />
+    <ClInclude Include="..\..\..\ic-code\ic-com.h" />
+    <ClInclude Include="..\..\..\ic-code\ic-crit.h" />
+    <ClInclude Include="..\..\..\ic-code\ic-device-detect.h" />
+    <ClInclude Include="..\..\..\ic-code\ic-file-util.h" />
+    <ClInclude Include="..\..\..\ic-code\ic-file.h" />
+    <ClInclude Include="..\..\..\ic-code\ic-log.h" />
+    <ClInclude Include="..\..\..\ic-code\ic-mbim.h" />
+    <ClInclude Include="..\..\..\ic-code\ic-msg-queue.h" />
+    <ClInclude Include="..\..\..\ic-code\ic-sema.h" />
+    <ClInclude Include="..\..\..\ic-code\ic-serial.h" />
+    <ClInclude Include="..\..\..\ic-code\ic-socket.h" />
+    <ClInclude Include="..\..\..\ic-code\ic-string-ascii.h" />
+    <ClInclude Include="..\..\..\ic-code\ic-string-list-ascii.h" />
+    <ClInclude Include="..\..\..\ic-code\ic-string-list-template.h" />
+    <ClInclude Include="..\..\..\ic-code\ic-string-list-wide.h" />
+    <ClInclude Include="..\..\..\ic-code\ic-string-list.h" />
+    <ClInclude Include="..\..\..\ic-code\ic-string-mb.h" />
+    <ClInclude Include="..\..\..\ic-code\ic-string-template.h" />
+    <ClInclude Include="..\..\..\ic-code\ic-string-wide.h" />
+    <ClInclude Include="..\..\..\ic-code\ic-string.h" />
+    <ClInclude Include="..\..\..\ic-code\ic-system.h" />
+    <ClInclude Include="..\..\..\ic-code\ic-thread.h" />
+    <ClInclude Include="..\..\..\ic-code\ic-time.h" />
+    <ClInclude Include="..\..\..\ic-code\ic-win32.h" />
+    <ClInclude Include="..\..\..\ic-code\ic-winusb.h" />
+    <ClInclude Include="..\public\drv_arch_type.h" />
+    <ClInclude Include="..\public\Globals.h" />
+    <ClInclude Include="..\public\Updater.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\ic-code\ic-at-port-mbim.cpp" />
+    <ClCompile Include="..\..\..\ic-code\ic-at-port-socket.cpp" />
+    <ClCompile Include="..\..\..\ic-code\ic-at-port-util.cpp" />
+    <ClCompile Include="..\..\..\ic-code\ic-at-port-winusb.cpp" />
+    <ClCompile Include="..\..\..\ic-code\ic-at-port.cpp" />
+    <ClCompile Include="..\..\..\ic-code\ic-device-detect-win.cpp" />
+    <ClCompile Include="..\..\..\ic-code\ic-device-detect.cpp" />
+    <ClCompile Include="..\..\..\ic-code\ic-file-util.cpp" />
+    <ClCompile Include="..\..\..\ic-code\ic-file.cpp" />
+    <ClCompile Include="..\..\..\ic-code\ic-log.cpp" />
+    <ClCompile Include="..\..\..\ic-code\ic-mbim.cpp" />
+    <ClCompile Include="..\..\..\ic-code\ic-msg-queue.cpp" />
+    <ClCompile Include="..\..\..\ic-code\ic-sema.cpp" />
+    <ClCompile Include="..\..\..\ic-code\ic-serial.cpp" />
+    <ClCompile Include="..\..\..\ic-code\ic-socket.cpp" />
+    <ClCompile Include="..\..\..\ic-code\ic-string-ascii.cpp" />
+    <ClCompile Include="..\..\..\ic-code\ic-string-list-ascii.cpp" />
+    <ClCompile Include="..\..\..\ic-code\ic-string-list-wide.cpp" />
+    <ClCompile Include="..\..\..\ic-code\ic-string-mb.cpp" />
+    <ClCompile Include="..\..\..\ic-code\ic-string-wide.cpp" />
+    <ClCompile Include="..\..\..\ic-code\ic-thread.cpp" />
+    <ClCompile Include="..\..\..\ic-code\ic-time.cpp" />
+    <ClCompile Include="..\..\..\ic-code\ic-winusb.cpp" />
+    <ClCompile Include="..\private\Updater.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

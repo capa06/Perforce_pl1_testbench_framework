@@ -1,0 +1,198 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\ic-code">
+      <UniqueIdentifier>{65f0a04d-4ab1-4dd9-9748-912e78e1471e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ic-code">
+      <UniqueIdentifier>{fe5c9803-423a-4012-ad81-9fedc12e7ce5}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\public\Updater.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\Globals.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\public\drv_arch_type.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\ic-code\ic-at-port.h">
+      <Filter>Header Files\ic-code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\ic-code\ic-at-port-mbim.h">
+      <Filter>Header Files\ic-code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\ic-code\ic-at-port-socket.h">
+      <Filter>Header Files\ic-code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\ic-code\ic-at-port-util.h">
+      <Filter>Header Files\ic-code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\ic-code\ic-at-port-winusb.h">
+      <Filter>Header Files\ic-code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\ic-code\ic-com.h">
+      <Filter>Header Files\ic-code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\ic-code\ic-crit.h">
+      <Filter>Header Files\ic-code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\ic-code\ic-device-detect.h">
+      <Filter>Header Files\ic-code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\ic-code\ic-file.h">
+      <Filter>Header Files\ic-code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\ic-code\ic-file-util.h">
+      <Filter>Header Files\ic-code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\ic-code\ic-log.h">
+      <Filter>Header Files\ic-code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\ic-code\ic-mbim.h">
+      <Filter>Header Files\ic-code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\ic-code\ic-msg-queue.h">
+      <Filter>Header Files\ic-code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\ic-code\ic-sema.h">
+      <Filter>Header Files\ic-code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\ic-code\ic-serial.h">
+      <Filter>Header Files\ic-code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\ic-code\ic-socket.h">
+      <Filter>Header Files\ic-code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\ic-code\ic-string.h">
+      <Filter>Header Files\ic-code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\ic-code\ic-string-ascii.h">
+      <Filter>Header Files\ic-code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\ic-code\ic-string-list.h">
+      <Filter>Header Files\ic-code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\ic-code\ic-string-list-ascii.h">
+      <Filter>Header Files\ic-code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\ic-code\ic-string-list-template.h">
+      <Filter>Header Files\ic-code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\ic-code\ic-string-list-wide.h">
+      <Filter>Header Files\ic-code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\ic-code\ic-string-mb.h">
+      <Filter>Header Files\ic-code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\ic-code\ic-string-template.h">
+      <Filter>Header Files\ic-code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\ic-code\ic-string-wide.h">
+      <Filter>Header Files\ic-code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\ic-code\ic-system.h">
+      <Filter>Header Files\ic-code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\ic-code\ic-thread.h">
+      <Filter>Header Files\ic-code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\ic-code\ic-time.h">
+      <Filter>Header Files\ic-code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\ic-code\ic-win32.h">
+      <Filter>Header Files\ic-code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\ic-code\ic-winusb.h">
+      <Filter>Header Files\ic-code</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\private\Updater.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\ic-code\ic-at-port.cpp">
+      <Filter>Source Files\ic-code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\ic-code\ic-at-port-mbim.cpp">
+      <Filter>Source Files\ic-code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\ic-code\ic-at-port-socket.cpp">
+      <Filter>Source Files\ic-code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\ic-code\ic-at-port-util.cpp">
+      <Filter>Source Files\ic-code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\ic-code\ic-at-port-winusb.cpp">
+      <Filter>Source Files\ic-code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\ic-code\ic-device-detect.cpp">
+      <Filter>Source Files\ic-code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\ic-code\ic-device-detect-win.cpp">
+      <Filter>Source Files\ic-code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\ic-code\ic-file.cpp">
+      <Filter>Source Files\ic-code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\ic-code\ic-file-util.cpp">
+      <Filter>Source Files\ic-code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\ic-code\ic-log.cpp">
+      <Filter>Source Files\ic-code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\ic-code\ic-mbim.cpp">
+      <Filter>Source Files\ic-code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\ic-code\ic-msg-queue.cpp">
+      <Filter>Source Files\ic-code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\ic-code\ic-sema.cpp">
+      <Filter>Source Files\ic-code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\ic-code\ic-serial.cpp">
+      <Filter>Source Files\ic-code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\ic-code\ic-socket.cpp">
+      <Filter>Source Files\ic-code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\ic-code\ic-string-ascii.cpp">
+      <Filter>Source Files\ic-code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\ic-code\ic-string-list-ascii.cpp">
+      <Filter>Source Files\ic-code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\ic-code\ic-string-list-wide.cpp">
+      <Filter>Source Files\ic-code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\ic-code\ic-string-mb.cpp">
+      <Filter>Source Files\ic-code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\ic-code\ic-string-wide.cpp">
+      <Filter>Source Files\ic-code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\ic-code\ic-thread.cpp">
+      <Filter>Source Files\ic-code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\ic-code\ic-time.cpp">
+      <Filter>Source Files\ic-code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\ic-code\ic-winusb.cpp">
+      <Filter>Source Files\ic-code</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

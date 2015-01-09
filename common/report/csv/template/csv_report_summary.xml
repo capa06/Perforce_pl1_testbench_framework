@@ -1,0 +1,1 @@
+<csvreport_s>	<summary>	    <field name='testid'></field>				<field name='verdict'></field>		    <field name='return_state'></field>	    <field name='description'></field>	    <field name='start_time'></field>	    <field name='end_time'></field>	    <field name='duration_sec'></field>	</summary></csvreport_s>

@@ -1,0 +1,44 @@
+<testplan>
+	<testlist>
+		<field name='testunit_0000000239'>"lte/common/testplan/units_fdd/lte_fdd_weekly_fading_tx4x2/testid_0000000239_lte_fdd_weekly_rfband_01_bwkhz_10000_cqi_nhrtx_4_awgn_tm_4_dlmcs_None.xml"</field>
+		<field name='testunit_0000000240'>"lte/common/testplan/units_fdd/lte_fdd_weekly_fading_tx4x2/testid_0000000240_lte_fdd_weekly_rfband_01_bwkhz_10000_cqi_nhrtx_4_epa5l_tm_4_dlmcs_None.xml"</field>
+		<field name='testunit_0000000241'>"lte/common/testplan/units_fdd/lte_fdd_weekly_fading_tx4x2/testid_0000000241_lte_fdd_weekly_rfband_01_bwkhz_10000_cqi_nhrtx_4_epa5m_tm_4_dlmcs_None.xml"</field>
+		<field name='testunit_0000000242'>"lte/common/testplan/units_fdd/lte_fdd_weekly_fading_tx4x2/testid_0000000242_lte_fdd_weekly_rfband_01_bwkhz_10000_cqi_nhrtx_4_epa5h_tm_4_dlmcs_None.xml"</field>
+		<field name='testunit_0000000243'>"lte/common/testplan/units_fdd/lte_fdd_weekly_fading_tx4x2/testid_0000000243_lte_fdd_weekly_rfband_01_bwkhz_10000_cqi_nhrtx_4_eva5l_tm_4_dlmcs_None.xml"</field>
+		<field name='testunit_0000000244'>"lte/common/testplan/units_fdd/lte_fdd_weekly_fading_tx4x2/testid_0000000244_lte_fdd_weekly_rfband_01_bwkhz_10000_cqi_nhrtx_4_eva5m_tm_4_dlmcs_None.xml"</field>
+		<field name='testunit_0000000245'>"lte/common/testplan/units_fdd/lte_fdd_weekly_fading_tx4x2/testid_0000000245_lte_fdd_weekly_rfband_01_bwkhz_10000_cqi_nhrtx_4_eva5h_tm_4_dlmcs_None.xml"</field>
+		<field name='testunit_0000000246'>"lte/common/testplan/units_fdd/lte_fdd_weekly_fading_tx4x2/testid_0000000246_lte_fdd_weekly_rfband_01_bwkhz_10000_cqi_nhrtx_4_eva70l_tm_4_dlmcs_None.xml"</field>
+		<field name='testunit_0000000247'>"lte/common/testplan/units_fdd/lte_fdd_weekly_fading_tx4x2/testid_0000000247_lte_fdd_weekly_rfband_01_bwkhz_10000_cqi_nhrtx_4_eva70m_tm_4_dlmcs_None.xml"</field>
+		<field name='testunit_0000000248'>"lte/common/testplan/units_fdd/lte_fdd_weekly_fading_tx4x2/testid_0000000248_lte_fdd_weekly_rfband_01_bwkhz_10000_cqi_nhrtx_4_eva70h_tm_4_dlmcs_None.xml"</field>
+		<field name='testunit_0000000249'>"lte/common/testplan/units_fdd/lte_fdd_weekly_fading_tx4x2/testid_0000000249_lte_fdd_weekly_rfband_01_bwkhz_10000_cqi_nhrtx_4_etu30l_tm_4_dlmcs_None.xml"</field>
+		<field name='testunit_0000000250'>"lte/common/testplan/units_fdd/lte_fdd_weekly_fading_tx4x2/testid_0000000250_lte_fdd_weekly_rfband_01_bwkhz_10000_cqi_nhrtx_4_etu30m_tm_4_dlmcs_None.xml"</field>
+		<field name='testunit_0000000251'>"lte/common/testplan/units_fdd/lte_fdd_weekly_fading_tx4x2/testid_0000000251_lte_fdd_weekly_rfband_01_bwkhz_10000_cqi_nhrtx_4_etu30h_tm_4_dlmcs_None.xml"</field>
+		<field name='testunit_0000000252'>"lte/common/testplan/units_fdd/lte_fdd_weekly_fading_tx4x2/testid_0000000252_lte_fdd_weekly_rfband_01_bwkhz_10000_cqi_nhrtx_4_etu70l_tm_4_dlmcs_None.xml"</field>
+		<field name='testunit_0000000253'>"lte/common/testplan/units_fdd/lte_fdd_weekly_fading_tx4x2/testid_0000000253_lte_fdd_weekly_rfband_01_bwkhz_10000_cqi_nhrtx_4_etu70m_tm_4_dlmcs_None.xml"</field>
+		<field name='testunit_0000000254'>"lte/common/testplan/units_fdd/lte_fdd_weekly_fading_tx4x2/testid_0000000254_lte_fdd_weekly_rfband_01_bwkhz_10000_cqi_nhrtx_4_etu70h_tm_4_dlmcs_None.xml"</field>
+		<field name='testunit_0000000255'>"lte/common/testplan/units_fdd/lte_fdd_weekly_fading_tx4x2/testid_0000000255_lte_fdd_weekly_rfband_01_bwkhz_10000_cqi_nhrtx_4_etu300l_tm_4_dlmcs_None.xml"</field>
+		<field name='testunit_0000000256'>"lte/common/testplan/units_fdd/lte_fdd_weekly_fading_tx4x2/testid_0000000256_lte_fdd_weekly_rfband_01_bwkhz_10000_cqi_nhrtx_4_etu300m_tm_4_dlmcs_None.xml"</field>
+		<field name='testunit_0000000257'>"lte/common/testplan/units_fdd/lte_fdd_weekly_fading_tx4x2/testid_0000000257_lte_fdd_weekly_rfband_01_bwkhz_10000_cqi_nhrtx_4_etu300h_tm_4_dlmcs_None.xml"</field>
+		<field name='testunit_0000000258'>"lte/common/testplan/units_fdd/lte_fdd_weekly_fading_tx4x2/testid_0000000258_lte_fdd_weekly_rfband_01_bwkhz_10000_cqi_nhrtx_4_hst_tm_4_dlmcs_None.xml"</field>
+		<field name='testunit_0000000259'>"lte/common/testplan/units_fdd/lte_fdd_weekly_fading_tx4x2/testid_0000000259_lte_fdd_weekly_rfband_01_bwkhz_20000_cqi_nhrtx_4_awgn_tm_4_dlmcs_None.xml"</field>
+		<field name='testunit_0000000260'>"lte/common/testplan/units_fdd/lte_fdd_weekly_fading_tx4x2/testid_0000000260_lte_fdd_weekly_rfband_01_bwkhz_20000_cqi_nhrtx_4_epa5l_tm_4_dlmcs_None.xml"</field>
+		<field name='testunit_0000000261'>"lte/common/testplan/units_fdd/lte_fdd_weekly_fading_tx4x2/testid_0000000261_lte_fdd_weekly_rfband_01_bwkhz_20000_cqi_nhrtx_4_epa5m_tm_4_dlmcs_None.xml"</field>
+		<field name='testunit_0000000262'>"lte/common/testplan/units_fdd/lte_fdd_weekly_fading_tx4x2/testid_0000000262_lte_fdd_weekly_rfband_01_bwkhz_20000_cqi_nhrtx_4_epa5h_tm_4_dlmcs_None.xml"</field>
+		<field name='testunit_0000000263'>"lte/common/testplan/units_fdd/lte_fdd_weekly_fading_tx4x2/testid_0000000263_lte_fdd_weekly_rfband_01_bwkhz_20000_cqi_nhrtx_4_eva5l_tm_4_dlmcs_None.xml"</field>
+		<field name='testunit_0000000264'>"lte/common/testplan/units_fdd/lte_fdd_weekly_fading_tx4x2/testid_0000000264_lte_fdd_weekly_rfband_01_bwkhz_20000_cqi_nhrtx_4_eva5m_tm_4_dlmcs_None.xml"</field>
+		<field name='testunit_0000000265'>"lte/common/testplan/units_fdd/lte_fdd_weekly_fading_tx4x2/testid_0000000265_lte_fdd_weekly_rfband_01_bwkhz_20000_cqi_nhrtx_4_eva5h_tm_4_dlmcs_None.xml"</field>
+		<field name='testunit_0000000266'>"lte/common/testplan/units_fdd/lte_fdd_weekly_fading_tx4x2/testid_0000000266_lte_fdd_weekly_rfband_01_bwkhz_20000_cqi_nhrtx_4_eva70l_tm_4_dlmcs_None.xml"</field>
+		<field name='testunit_0000000267'>"lte/common/testplan/units_fdd/lte_fdd_weekly_fading_tx4x2/testid_0000000267_lte_fdd_weekly_rfband_01_bwkhz_20000_cqi_nhrtx_4_eva70m_tm_4_dlmcs_None.xml"</field>
+		<field name='testunit_0000000268'>"lte/common/testplan/units_fdd/lte_fdd_weekly_fading_tx4x2/testid_0000000268_lte_fdd_weekly_rfband_01_bwkhz_20000_cqi_nhrtx_4_eva70h_tm_4_dlmcs_None.xml"</field>
+		<field name='testunit_0000000269'>"lte/common/testplan/units_fdd/lte_fdd_weekly_fading_tx4x2/testid_0000000269_lte_fdd_weekly_rfband_01_bwkhz_20000_cqi_nhrtx_4_etu30l_tm_4_dlmcs_None.xml"</field>
+		<field name='testunit_0000000270'>"lte/common/testplan/units_fdd/lte_fdd_weekly_fading_tx4x2/testid_0000000270_lte_fdd_weekly_rfband_01_bwkhz_20000_cqi_nhrtx_4_etu30m_tm_4_dlmcs_None.xml"</field>
+		<field name='testunit_0000000271'>"lte/common/testplan/units_fdd/lte_fdd_weekly_fading_tx4x2/testid_0000000271_lte_fdd_weekly_rfband_01_bwkhz_20000_cqi_nhrtx_4_etu30h_tm_4_dlmcs_None.xml"</field>
+		<field name='testunit_0000000272'>"lte/common/testplan/units_fdd/lte_fdd_weekly_fading_tx4x2/testid_0000000272_lte_fdd_weekly_rfband_01_bwkhz_20000_cqi_nhrtx_4_etu70l_tm_4_dlmcs_None.xml"</field>
+		<field name='testunit_0000000273'>"lte/common/testplan/units_fdd/lte_fdd_weekly_fading_tx4x2/testid_0000000273_lte_fdd_weekly_rfband_01_bwkhz_20000_cqi_nhrtx_4_etu70m_tm_4_dlmcs_None.xml"</field>
+		<field name='testunit_0000000274'>"lte/common/testplan/units_fdd/lte_fdd_weekly_fading_tx4x2/testid_0000000274_lte_fdd_weekly_rfband_01_bwkhz_20000_cqi_nhrtx_4_etu70h_tm_4_dlmcs_None.xml"</field>
+		<field name='testunit_0000000275'>"lte/common/testplan/units_fdd/lte_fdd_weekly_fading_tx4x2/testid_0000000275_lte_fdd_weekly_rfband_01_bwkhz_20000_cqi_nhrtx_4_etu300l_tm_4_dlmcs_None.xml"</field>
+		<field name='testunit_0000000276'>"lte/common/testplan/units_fdd/lte_fdd_weekly_fading_tx4x2/testid_0000000276_lte_fdd_weekly_rfband_01_bwkhz_20000_cqi_nhrtx_4_etu300m_tm_4_dlmcs_None.xml"</field>
+		<field name='testunit_0000000277'>"lte/common/testplan/units_fdd/lte_fdd_weekly_fading_tx4x2/testid_0000000277_lte_fdd_weekly_rfband_01_bwkhz_20000_cqi_nhrtx_4_etu300h_tm_4_dlmcs_None.xml"</field>
+		<field name='testunit_0000000278'>"lte/common/testplan/units_fdd/lte_fdd_weekly_fading_tx4x2/testid_0000000278_lte_fdd_weekly_rfband_01_bwkhz_20000_cqi_nhrtx_4_hst_tm_4_dlmcs_None.xml"</field>
+	</testlist>
+</testplan>

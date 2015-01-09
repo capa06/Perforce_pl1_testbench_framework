@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30501.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "updaterlib", "updaterlib.vcxproj", "{0C255AB0-978D-4485-8681-BBCE5F84D6F0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|ARM = Debug|ARM
+		Debug|Win32 = Debug|Win32
+		Release|ARM = Release|ARM
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0C255AB0-978D-4485-8681-BBCE5F84D6F0}.Debug|ARM.ActiveCfg = Debug|ARM
+		{0C255AB0-978D-4485-8681-BBCE5F84D6F0}.Debug|ARM.Build.0 = Debug|ARM
+		{0C255AB0-978D-4485-8681-BBCE5F84D6F0}.Debug|Win32.ActiveCfg = Debug|Win32
+		{0C255AB0-978D-4485-8681-BBCE5F84D6F0}.Debug|Win32.Build.0 = Debug|Win32
+		{0C255AB0-978D-4485-8681-BBCE5F84D6F0}.Debug|Win32.Deploy.0 = Debug|Win32
+		{0C255AB0-978D-4485-8681-BBCE5F84D6F0}.Release|ARM.ActiveCfg = Release|ARM
+		{0C255AB0-978D-4485-8681-BBCE5F84D6F0}.Release|ARM.Build.0 = Release|ARM
+		{0C255AB0-978D-4485-8681-BBCE5F84D6F0}.Release|Win32.ActiveCfg = Release|Win32
+		{0C255AB0-978D-4485-8681-BBCE5F84D6F0}.Release|Win32.Build.0 = Release|Win32
+		{0C255AB0-978D-4485-8681-BBCE5F84D6F0}.Release|Win32.Deploy.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,60 @@
+<testunit>
+	<common>
+		<field name='testid' >432279</field>
+		<field name='rat' >"LTE_CA"</field>
+		<field name='testtype' >"LTE_CA_MONTHLY_BLER_FADING"</field>
+		<field name='descr' >"testid_0000432279_lte_ca_monthly_rfband_04_17_bwkhz_10000_cqi_nhrtx_None_awgn_tm_3_dlmcs_None.xml"</field>
+	</common>
+	<pcc>
+		<field name='dmode' >"FDD"</field>
+		<field name='dlulconf' ></field>
+		<field name='ssconf' ></field>
+		<field name='bwmhz' >[10]</field>
+		<field name='rfband' >[4]</field>
+		<field name='earfcn' >{4: [2175]}</field>
+		<field name='cp' >"NORM"</field>
+		<field name='tm' >{10:[3]} </field>
+		<field name='txants' >{1: [1], 2: [2], 3: [2], 4: [2]}</field>
+		<field name='pmi' >{1: {1: [None]}, 2: {2: [None]}, 3: {2: [None]}, 4: {2: [None]}}</field>
+		<field name='rsepre' >[-72.8]</field>
+		<field name='pa' >[-3]</field>
+		<field name='pb' >[1]</field>
+		<field name='chtype' >['AWGN']</field>
+		<field name='snr' >[33, 30, 27, 24, 21, 18, 15, 12, 9, 6, 3, 0, -3]</field>
+		<field name='doppler' >[None]</field>
+		<field name='schedtype' >"CQI"</field>
+		<field name='harq' >{'NHRTX':None, 'RIV':None}</field>
+		<field name='dlmcs'     >{10:[None]}</field>
+		<field name='dlnprb'    >{10:[50]}</field>
+		<field name='dlrbstart' >{10:[0]}</field>
+		<field name='ulmcs'     >{10:[4]}</field>
+		<field name='ulnprb'    >{10:[50]}</field>
+		<field name='ulrbstart' >{10:[0]}</field>
+	</pcc>
+	<scc>
+		<field name='dmode' >"FDD"</field>
+		<field name='dlulconf' ></field>
+		<field name='ssconf' ></field>
+		<field name='bwmhz' >[10]</field>
+		<field name='rfband' >[17]</field>
+		<field name='earfcn' >{17: [5790]}</field>
+		<field name='cp' >"NORM"</field>
+		<field name='tm' >{10:[3]} </field>
+		<field name='txants' >{1: [1], 2: [2], 3: [2], 4: [2]}</field>
+		<field name='pmi' >{1: {1: [None]}, 2: {2: [None]}, 3: {2: [None]}, 4: {2: [None]}}</field>
+		<field name='rsepre' >[-72.8]</field>
+		<field name='pa' >[-3]</field>
+		<field name='pb' >[1]</field>
+		<field name='chtype' >['AWGN']</field>
+		<field name='snr' >[33, 30, 27, 24, 21, 18, 15, 12, 9, 6, 3, 0, -3]</field>
+		<field name='doppler' >[None]</field>
+		<field name='schedtype' >"CQI"</field>
+		<field name='harq' >{'NHRTX':None, 'RIV':None}</field>
+		<field name='dlmcs'     >{10:[None]}</field>
+		<field name='dlnprb'    >{10:[50]}</field>
+		<field name='dlrbstart' >{10:[0]}</field>
+		<field name='ulmcs'     >{10:[4]}</field>
+		<field name='ulnprb'    >{10:[50]}</field>
+		<field name='ulrbstart' >{10:[0]}</field>
+	</scc>
+</testunit>

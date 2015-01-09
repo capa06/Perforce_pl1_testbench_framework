@@ -1,0 +1,28 @@
+<testConfig>
+	<jenkins_config>
+		<info_url>http://bs.nvidia.com</info_url>
+		<local_p4_root>/home/jenkins/Perforce/your_workspace</local_p4_root>            
+	</jenkins_config>
+	<!-- List here all the platforms in use-->             
+    <nvidia-p2341-win7_internal>       
+		<!-- Platform TAG -->
+        <platform_tag>nvidia-p2341</platform_tag>
+		<!-- Enable the Switched Cabinet Distribution Unit--> 
+	    <enable_scdu>1</enable_scdu>
+		<!-- Switched Cabinet Distribution Unit IP address--> 
+	    <scdu_ip>0.0.0.0</scdu_ip>
+        <!-- Flash via debugger options {0,1} -->
+  		<enable_flash_via_debugger>1</enable_flash_via_debugger>
+		<!-- ADA IP address -->
+        <icera_ada_ip>1.1.1.1</icera_ada_ip>     
+		<!-- SCDU port of the icera-ada linked to the platform -->
+        <icera_ada_scdu_port>1</icera_ada_scdu_port>
+		<!-- SCDU port of AC adapter linked to the platform-->
+        <icera_swd_scdu_port>8</icera_swd_scdu_port>
+        <!-- Use Agilent PSU E3631A  {0,1} -->
+  		<enable_psu>1</enable_psu>        
+		<!-- Agilent E5810A (lan2gpib gateway) /E3631A (PSU) configuration -->
+        <psu_gwip>ww.xx.yy.zz</psu_gwip>
+        <psu_gpib>5</psu_gpib>        
+    </nvidia-p2341-win7_internal>
+</testConfig>

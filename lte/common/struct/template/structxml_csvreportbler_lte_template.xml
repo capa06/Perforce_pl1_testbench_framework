@@ -1,0 +1,132 @@
+<csvreportbler>
+	<verdict>
+		<!-- Downlink verdict  -->
+		<field name='verdict_dl' ></field>
+		<!-- Uplink verdict  -->
+		<field name='verdict_ul' ></field>
+		<!-- Downlink best score  -->
+		<field name='best_dlthr_Mbps' ></field>
+		<!-- Uplink best score  -->
+		<field name='best_ulthr_Mbps' ></field>
+		<!-- Tolerance  -->
+		<field name='tolerance' ></field>
+	</verdict>
+	<params>
+		<!-- Carrier {'PCC', 'SCC'}-->
+		<field name='carrier' ></field>
+		<!-- Duplex Mode -->
+		<field name='dmode' ></field>
+		<!-- DL/UL configuration -->
+		<field name='dlulconf' ></field>
+		<!-- SS configuration -->
+		<field name='ssconf' ></field>
+		<!-- Bandwidth MHz -->
+		<field name='bwmhz' ></field>
+		<!-- RF band -->
+		<field name='rfband' ></field>
+		<!-- EARFCN -->
+		<field name='earfcn' ></field>
+		<!-- CP duration -->
+		<field name='cp' ></field>
+		<!-- Transmission Mode -->
+		<field name='tm' ></field>
+		<!-- Supported TX antennas -->
+		<field name='txants' ></field>
+		<!-- PMI configurations -->
+		<field name='pmi' ></field>
+		<!-- RSEPRE [dBm/15KHz] -->	
+		<field name='rsepre' ></field>
+		<!-- PA [dB]-->	
+		<field name='pa' ></field>
+		<!-- pB [dB] -->	
+		<field name='pb' ></field>
+		<!-- 3GPP Channel propagation type -->
+		<field name='chtype' ></field>
+		<!-- SNR [dB]-->		
+		<field name='snr' ></field>
+		<!-- Doppler Shift Hz -->
+		<field name='doppler' ></field>
+		<!-- Scheduler type { 'AMC', 'FIXED'} -->	
+		<field name='schedtype' ></field>
+		<!-- Downlink HARQ rtx-->	
+		<field name='nhrtx' ></field>
+		<!-- RIV -->	
+		<field name='riv' ></field>
+		<!-- DLMCS per BW -->	
+		<field name='dlmcs'     ></field>
+		<!-- DLNPRB per BW    -->	
+		<field name='dlnprb'    ></field>
+		<!-- DLRBSTART per BW -->	
+		<field name='dlrbstart' ></field>
+		<!-- ULMCS per BW     -->	
+		<field name='ulmcs'     ></field>
+		<!-- ULNPRB per BW    -->	
+		<field name='ulnprb'    ></field>
+		<!-- ULRBSTART per BW -->	
+		<field name='ulrbstart' ></field>
+	</params>
+	<meas_bler>
+		<!-- Validity bit -->
+		<field name='valid' ></field>
+		<!-- Downlink measurement reliability -->
+		<field name='dlrely' ></field>
+		<!-- Downlink average throughput [Mbps] -->
+		<field name='dlthr_Mbps' ></field>
+		<!-- Downlink minimum throughput [Mbps] -->
+		<field name='dlthr_min_Mbps' ></field>
+		<!-- Downlink maximum throughput [Mbps] -->
+		<field name='dlthr_max_Mbps' ></field>
+		<!-- Downlink BLER range {0..1} -->
+		<field name='dlbler' ></field>
+		<!-- Median CQI % -->
+		<field name='cqi' ></field>
+		<!-- Number of ACKs-->
+		<field name='ack' ></field>
+		<!-- Number of NACKs-->
+		<field name='nack' ></field>
+		<!-- Number of DTXs-->
+		<field name='dtx' ></field>
+		<!-- Measurement period [#subframe]-->
+		<field name='sf_total' ></field>
+		<!-- Number of PDSCH scheduled -->
+		<field name='sf_scheduled' ></field>
+		<!-- Uplink measurement reliability -->
+		<field name='ulrely' ></field>
+		<!-- Uplink throughput [Mbps] -->
+		<field name='ulthr_Mbps' ></field>
+		<!-- Uplink BLER range {0..1} -->
+		<field name='ulbler' ></field>
+		<!-- Number of CRC pass % -->
+		<field name='crc_pass' ></field>
+		<!-- Number of CRC fail % -->
+		<field name='crc_fail' ></field>
+	</meas_bler>
+	<meas_pwr>
+		<!-- Voltage [V] -->
+		<field name='voltage_V' ></field>
+		<!-- Current [mA] -->
+		<field name='current_mA' ></field>
+		<!-- Power [mW] -->
+		<field name='power_mW' ></field>
+	</meas_pwr>
+	<meas_rank>
+		<field name='rank' ></field>
+	</meas_rank>
+	<meas_dlthr>
+		<field name='dlthr_cw1' ></field>
+		<field name='dlthr_cw2' ></field>	
+	</meas_dlthr>
+	<meas_cqi>
+		<field name='cqi_cw1' ></field>
+		<field name='cqi_cw2' ></field>	
+	</meas_cqi>
+	<meas_pmi>
+		<field name='pmi_ri1' ></field>
+		<field name='pmi_ri2' ></field>	
+	</meas_pmi>
+	<meas_harq>	
+		<field name='harq_cw1' ></field>
+		<field name='harq_cw2' ></field>	
+	</meas_harq>
+</csvreportbler>
+

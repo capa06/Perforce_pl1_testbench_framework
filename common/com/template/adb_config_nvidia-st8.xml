@@ -1,0 +1,17 @@
+<testConfig>
+    <adb_config>
+		<!-- platform -->
+        <platform>nvidia-st8</platform>
+		<!-- root permission flag-->
+        <root_permission>0</root_permission>        
+		<!-- TTY port AT  -->        
+        <port_tty_at></port_tty_at>
+		<!-- TCP port AT  -->        
+        <port_tcp_at></port_tcp_at>
+		<!-- TTY port LOG  -->        
+        <port_tty_log></port_tty_log>
+		<!-- TCP port LOG  -->        
+        <port_tcp_log></port_tcp_log>
+    </adb_config>
+    <!-- plus more test configuration -->
+</testConfig>

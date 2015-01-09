@@ -1,0 +1,9 @@
+<testConfig>
+    <kmt>
+		<!-- platform -->
+        <platform>nvidia-p2341</platform>
+		<!-- COM port  -->
+        <port>20</port>		        
+    </kmt>
+    <!-- plus more test configuration -->
+</testConfig>

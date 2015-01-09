@@ -1,0 +1,36 @@
+<testunit>
+	<common>
+		<field name='testid' >6116</field>
+		<field name='rat' >"LTE_FDD"</field>
+		<field name='testtype' >"LTE_FDD_NIGHTLY_BLER_FADING"</field>
+		<field name='descr' >"testid_0000006116_lte_fdd_nightly_rfband_04_bwkhz_20000_udch_nhrtx_None_awgn_tm_3_dlmcs_25.xml"</field>
+	</common>
+	<pcc>
+		<field name='dmode' >"FDD"</field>
+		<field name='dlulconf' ></field>
+		<field name='ssconf' ></field>
+		<field name='bwmhz' >[20]</field>
+		<field name='rfband' >[4]</field>
+		<field name='earfcn' >{4: [2175]}</field>
+		<field name='cp' >"NORM"</field>
+		<field name='tm' >{20:[3]} </field>
+		<field name='txants' >{1: [1], 2: [2], 3: [2], 4: [2]}</field>
+		<field name='pmi' >{1: {1: [None]}, 2: {2: [None]}, 3: {2: [None]}, 4: {2: [None]}}</field>
+		<field name='rsepre' >[-72.8]</field>
+		<field name='pa' >[-3]</field>
+		<field name='pb' >[1]</field>
+		<field name='chtype' >['AWGN']</field>
+		<field name='snr' >[33, 30, 27, 24, 21, 18, 15, 12, 9, 6, 3, 0, -3]</field>
+		<field name='doppler' >[None]</field>
+		<field name='schedtype' >"UDCH"</field>
+		<field name='harq' >{'NHRTX':None, 'RIV':None}</field>
+		<field name='dlmcs'     >{20:[25]}</field>
+		<field name='dlnprb'    >{20:[100]}</field>
+		<field name='dlrbstart' >{20:[0]}</field>
+		<field name='ulmcs'     >{20:[4]}</field>
+		<field name='ulnprb'    >{20:[100]}</field>
+		<field name='ulrbstart' >{20:[0]}</field>
+	</pcc>
+	<scc>
+	</scc>
+</testunit>

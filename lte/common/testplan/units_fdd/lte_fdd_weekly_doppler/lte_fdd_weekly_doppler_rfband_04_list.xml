@@ -1,0 +1,12 @@
+<testplan>
+	<testlist>
+		<field name='testunit_0000006231'>"lte/common/testplan/units_fdd/lte_fdd_weekly_doppler/testid_0000006231_lte_fdd_weekly_rfband_04_bwkhz_10000_udch_nhrtx_None_etu70l_tm_2_dlmcs_25.xml"</field>
+		<field name='testunit_0000006232'>"lte/common/testplan/units_fdd/lte_fdd_weekly_doppler/testid_0000006232_lte_fdd_weekly_rfband_04_bwkhz_10000_udch_nhrtx_None_etu70l_tm_2_dlmcs_27.xml"</field>
+		<field name='testunit_0000006233'>"lte/common/testplan/units_fdd/lte_fdd_weekly_doppler/testid_0000006233_lte_fdd_weekly_rfband_04_bwkhz_10000_udch_nhrtx_None_etu70l_tm_3_dlmcs_25.xml"</field>
+		<field name='testunit_0000006234'>"lte/common/testplan/units_fdd/lte_fdd_weekly_doppler/testid_0000006234_lte_fdd_weekly_rfband_04_bwkhz_10000_udch_nhrtx_None_etu70l_tm_3_dlmcs_27.xml"</field>
+		<field name='testunit_0000006235'>"lte/common/testplan/units_fdd/lte_fdd_weekly_doppler/testid_0000006235_lte_fdd_weekly_rfband_04_bwkhz_20000_udch_nhrtx_None_etu70l_tm_2_dlmcs_25.xml"</field>
+		<field name='testunit_0000006236'>"lte/common/testplan/units_fdd/lte_fdd_weekly_doppler/testid_0000006236_lte_fdd_weekly_rfband_04_bwkhz_20000_udch_nhrtx_None_etu70l_tm_2_dlmcs_27.xml"</field>
+		<field name='testunit_0000006237'>"lte/common/testplan/units_fdd/lte_fdd_weekly_doppler/testid_0000006237_lte_fdd_weekly_rfband_04_bwkhz_20000_udch_nhrtx_None_etu70l_tm_3_dlmcs_25.xml"</field>
+		<field name='testunit_0000006238'>"lte/common/testplan/units_fdd/lte_fdd_weekly_doppler/testid_0000006238_lte_fdd_weekly_rfband_04_bwkhz_20000_udch_nhrtx_None_etu70l_tm_3_dlmcs_27.xml"</field>
+	</testlist>
+</testplan>

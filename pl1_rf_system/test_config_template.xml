@@ -1,0 +1,24 @@
+<testConfig>
+    <rf script="runTest">
+        <log>INFO</log>
+		<!-- choices 'CRITICAL', 'ERROR', 'WARNING', 'INFO', 'DEBUG' -->
+		<instr_name>CMW500</instr_name>
+		<!-- Supported instrument types CMU200, CMW500 -->
+        <instr_ip>ww.xx.yy.zz</instr_ip>
+		<!-- IP address of CMU or CMW500 - use "no_instr" to run simple tests without a CMW attached-->
+		<instr_gpib>20,1</instr_gpib>
+		<!-- Primary and secondary GPIB address of CMU connected to Agilent LAN/GPIB gateway -->
+		<!-- Note that this is not applicable to the CMW500 -->
+		<cable_loss>1.5</cable_loss>
+		<!-- This is the RF cable loss in dB -->
+		<test_selection>Jenkins</test_selection>
+		<!-- group of test Id's to execute -->
+		<psugwip>ww.xx.yy.zz</psugwip>
+		<!-- IP address of LAN-GPIB switch for power supply -->
+        <psuvolt>3.7</psuvolt>
+        <!-- only applicable if power supply is enabled -->
+		<psugpib>5</psugpib>
+		<!-- GPIB address of power supply connected to LAN-GPIB switch -->
+    </rf>
+    <!-- plus more test configuration -->
+</testConfig>

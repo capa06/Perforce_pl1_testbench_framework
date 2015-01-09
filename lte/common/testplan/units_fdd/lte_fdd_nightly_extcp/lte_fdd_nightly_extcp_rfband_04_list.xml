@@ -1,0 +1,10 @@
+<testplan>
+	<testlist>
+		<field name='testunit_0000006127'>"lte/common/testplan/units_fdd/lte_fdd_nightly_extcp/testid_0000006127_lte_fdd_nightly_rfband_04_bwkhz_01400_sched_udch_nhrtx_None_chtype_None.xml"</field>
+		<field name='testunit_0000006128'>"lte/common/testplan/units_fdd/lte_fdd_nightly_extcp/testid_0000006128_lte_fdd_nightly_rfband_04_bwkhz_03000_sched_udch_nhrtx_None_chtype_None.xml"</field>
+		<field name='testunit_0000006129'>"lte/common/testplan/units_fdd/lte_fdd_nightly_extcp/testid_0000006129_lte_fdd_nightly_rfband_04_bwkhz_05000_sched_udch_nhrtx_None_chtype_None.xml"</field>
+		<field name='testunit_0000006130'>"lte/common/testplan/units_fdd/lte_fdd_nightly_extcp/testid_0000006130_lte_fdd_nightly_rfband_04_bwkhz_10000_sched_udch_nhrtx_None_chtype_None.xml"</field>
+		<field name='testunit_0000006131'>"lte/common/testplan/units_fdd/lte_fdd_nightly_extcp/testid_0000006131_lte_fdd_nightly_rfband_04_bwkhz_15000_sched_udch_nhrtx_None_chtype_None.xml"</field>
+		<field name='testunit_0000006132'>"lte/common/testplan/units_fdd/lte_fdd_nightly_extcp/testid_0000006132_lte_fdd_nightly_rfband_04_bwkhz_20000_sched_udch_nhrtx_None_chtype_None.xml"</field>
+	</testlist>
+</testplan>

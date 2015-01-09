@@ -1,0 +1,36 @@
+<testunit>
+	<common>
+		<field name='testid' >6399</field>
+		<field name='rat' >"LTE_FDD"</field>
+		<field name='testtype' >"LTE_FDD_MONTHLY_BLER_FADING"</field>
+		<field name='descr' >"testid_0000006399_lte_fdd_monthly_rfband_04_bwkhz_20000_cqi_nhrtx_4_awgn_tm_3_dlmcs_None.xml"</field>
+	</common>
+	<pcc>
+		<field name='dmode' >"FDD"</field>
+		<field name='dlulconf' ></field>
+		<field name='ssconf' ></field>
+		<field name='bwmhz' >[20]</field>
+		<field name='rfband' >[4]</field>
+		<field name='earfcn' >{4: [2175]}</field>
+		<field name='cp' >"NORM"</field>
+		<field name='tm' >{20:[3]} </field>
+		<field name='txants' >{1: [1], 2: [2], 3: [2], 4: [2]}</field>
+		<field name='pmi' >{1: {1: [None]}, 2: {2: [None]}, 3: {2: [None]}, 4: {2: [None]}}</field>
+		<field name='rsepre' >[-72.8]</field>
+		<field name='pa' >[-3]</field>
+		<field name='pb' >[1]</field>
+		<field name='chtype' >['AWGN']</field>
+		<field name='snr' >[33, 30, 27, 24, 21, 18, 15, 12, 9, 6, 3, 0, -3]</field>
+		<field name='doppler' >[None]</field>
+		<field name='schedtype' >"CQI"</field>
+		<field name='harq' >{'NHRTX':4, 'RIV':'0 2 3 1'}</field>
+		<field name='dlmcs'     >{20:[None]}</field>
+		<field name='dlnprb'    >{20:[100]}</field>
+		<field name='dlrbstart' >{20:[0]}</field>
+		<field name='ulmcs'     >{20:[4]}</field>
+		<field name='ulnprb'    >{20:[100]}</field>
+		<field name='ulrbstart' >{20:[0]}</field>
+	</pcc>
+	<scc>
+	</scc>
+</testunit>

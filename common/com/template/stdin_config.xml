@@ -1,0 +1,9 @@
+<testConfig>
+    <stdin>
+		<!-- platform -->
+        <!--<platform>nvidia-p2341</platform>-->
+        <!--<platform>samsung-s5</platform>-->
+        <platform>icera.i500-121-1722.2022.100</platform>
+    </stdin>
+    <!-- plus more test configuration -->
+</testConfig>

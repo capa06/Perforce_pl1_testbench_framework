@@ -1,0 +1,10 @@
+<testplan>
+	<testlist>
+		<field name='testunit_0000074100'>"lte/common/testplan/units_tdd/lte_tdd_percl/testid_0000074100_lte_tdd_percl_rfband_38_bwkhz_01400_dlul_1_ss_7_udch_nhrtx_None_None.xml"</field>
+		<field name='testunit_0000074101'>"lte/common/testplan/units_tdd/lte_tdd_percl/testid_0000074101_lte_tdd_percl_rfband_38_bwkhz_03000_dlul_1_ss_7_udch_nhrtx_None_None.xml"</field>
+		<field name='testunit_0000074102'>"lte/common/testplan/units_tdd/lte_tdd_percl/testid_0000074102_lte_tdd_percl_rfband_38_bwkhz_05000_dlul_1_ss_7_udch_nhrtx_None_None.xml"</field>
+		<field name='testunit_0000074103'>"lte/common/testplan/units_tdd/lte_tdd_percl/testid_0000074103_lte_tdd_percl_rfband_38_bwkhz_10000_dlul_1_ss_7_udch_nhrtx_None_None.xml"</field>
+		<field name='testunit_0000074104'>"lte/common/testplan/units_tdd/lte_tdd_percl/testid_0000074104_lte_tdd_percl_rfband_38_bwkhz_15000_dlul_1_ss_7_udch_nhrtx_None_None.xml"</field>
+		<field name='testunit_0000074105'>"lte/common/testplan/units_tdd/lte_tdd_percl/testid_0000074105_lte_tdd_percl_rfband_38_bwkhz_20000_dlul_1_ss_7_udch_nhrtx_None_None.xml"</field>
+	</testlist>
+</testplan>

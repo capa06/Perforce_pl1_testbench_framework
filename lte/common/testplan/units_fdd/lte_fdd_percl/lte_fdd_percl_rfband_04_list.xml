@@ -1,0 +1,10 @@
+<testplan>
+	<testlist>
+		<field name='testunit_0000006100'>"lte/common/testplan/units_fdd/lte_fdd_percl/testid_0000006100_lte_fdd_percl_rfband_04_bwkhz_01400_sched_udch_nhrtx_None_chtype_None.xml"</field>
+		<field name='testunit_0000006101'>"lte/common/testplan/units_fdd/lte_fdd_percl/testid_0000006101_lte_fdd_percl_rfband_04_bwkhz_03000_sched_udch_nhrtx_None_chtype_None.xml"</field>
+		<field name='testunit_0000006102'>"lte/common/testplan/units_fdd/lte_fdd_percl/testid_0000006102_lte_fdd_percl_rfband_04_bwkhz_05000_sched_udch_nhrtx_None_chtype_None.xml"</field>
+		<field name='testunit_0000006103'>"lte/common/testplan/units_fdd/lte_fdd_percl/testid_0000006103_lte_fdd_percl_rfband_04_bwkhz_10000_sched_udch_nhrtx_None_chtype_None.xml"</field>
+		<field name='testunit_0000006104'>"lte/common/testplan/units_fdd/lte_fdd_percl/testid_0000006104_lte_fdd_percl_rfband_04_bwkhz_15000_sched_udch_nhrtx_None_chtype_None.xml"</field>
+		<field name='testunit_0000006105'>"lte/common/testplan/units_fdd/lte_fdd_percl/testid_0000006105_lte_fdd_percl_rfband_04_bwkhz_20000_sched_udch_nhrtx_None_chtype_None.xml"</field>
+	</testlist>
+</testplan>

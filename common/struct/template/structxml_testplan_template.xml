@@ -1,0 +1,13 @@
+<testplan>
+	<testlist>
+		<!-- Define here the list of XML test files to execute. Relative path of files is required, see exaple below -->
+	</testlist>
+</testplan>
+
+
+<!-- **********************************************************************************************************************************************   -->
+<!--                                           EXAMPLE                                                  -->
+<!-- **********************************************************************************************************************************************   -->
+<!--  <field name='testunit_00000'>"lte/common/tetsplan/units/testid_00000_percl_lte_fdd_chtype_none_rfband_01_bw_all_cat4.xml"</field>              -->
+<!--  <field name='testunit_00001'>"lte/common/tetsplan/units/testid_00001_nightly_lte_fdd_chtype_none_rfband_01_bw_20mhz_cat4_mcssweep.xml"</field> -->	
+<!-- **********************************************************************************************************************************************   -->

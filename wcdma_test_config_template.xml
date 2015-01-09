@@ -1,0 +1,34 @@
+<testConfig>
+    <wcdma script="run_pl1testbench_wcdma">
+        <log>info</log>
+		<!-- choices 'CRITICAL', 'ERROR', 'WARNING', 'INFO', 'DEBUG' -->
+        <cmwip>x.y.w.z</cmwip>
+		<!-- IP address of CMW500 -->
+		<ctrlif>AT</ctrlif>
+		<test2execute>[202,0,1,2]</test2execute>
+		<!-- group of test Id's to execute -->
+        <pwrmeas>1</pwrmeas>
+		<!-- denotes enable/disable of power supply -->
+		<usimemu>0</usimemu>
+		<psugwip>2.2.2.2</psugwip>
+		<!-- IP address of LAN-GPIB switch for power supply -->
+		<!-- only applicable if power supply is enabled -->
+		<psugpib>5</psugpib>
+		<!-- GPIB address of power supply connected to LAN-GPIB switch -->
+		<msglog>0</msglog>
+		<!-- enable/disable of modem logging -->
+		<database></database>
+		<!-- path and filename for database, should not be specified for linux OS-->
+		<remoteDB>0</remoteDB>
+		<!-- Flag [0/1] to indicate if remote Database needs updating or not -->
+		<remoteDBhost></remoteDBhost>
+		<!-- Remote DB host / ip address -->
+		<remoteDBuid></remoteDBuid>
+		<!-- Remote DB User ID -->
+		<remoteDBpwd></remoteDBpwd>
+		<!-- Remote DB Password (enc) -->
+		<remoteDBname></remoteDBname>
+		<!-- Remote DB Name -->
+    </wcdma>
+    <!-- plus more test configuration -->
+</testConfig>
