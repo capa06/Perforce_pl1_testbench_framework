@@ -408,6 +408,7 @@ class Anritsu(object):
         #cmwswinfo=self.read("SYSTem:BASE:OPTion:VERSion?")
 
         anrswinfo=self.read('MCFV?')+' '+self.read('MCMSV?')
+        version=re.compile('[.0-9]+').findall(anrswinfo)
         print anrswinfo
         self.wait_for_completion()
 
@@ -431,7 +432,7 @@ class Anritsu(object):
 
             # Extract THE SW version string
             #tmp=re.compile('%s,[v|V|x|X]+[0-9]+[.][0-9]+[.][0-9]+' % k)
-            tmp=re.compile(k)
+            tmp=re.compile('%s,[v|V|x|X]+[0-9]+[.][0-9]+' % k)
             check_str=k
 
             if tmp.search(anrswinfo):
@@ -442,7 +443,7 @@ class Anritsu(object):
 
                 # Extract the version number
 
-                tmp=re.compile('[.00-99]+')
+                tmp=re.compile('[.0-9]+')
 
                 xy=((tmp.search(check_str)).group()).split('.')
                 print xy
