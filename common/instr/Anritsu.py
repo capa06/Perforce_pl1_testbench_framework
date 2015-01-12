@@ -400,16 +400,18 @@ class Anritsu(object):
 
         #check_l   = {'CMW_BASE':(3, 2, 50), 'CMW_LTE_Sig':(3, 2, 81), 'CMW_WCDMA_Sig':(3,2,50), 'CMW_GSM_Sig':(3,2,50), }
         #check_l   ={'ANR_BASE':'22.67 #008', 'ANR_WCDMA':'22,23, #008', 'ANR_GSM': '22,18,#006', 'ANR_LTE':'22,54,#009', }
-        check_l   ={'VERSION':(24,67), 'WCDMA':(22,23), 'GSM': (22,18), 'LTE':(22,64), }
+        check_l   ={'Version':(24.67), 'WCDMA':(22.23), 'GSM': (22.18), 'LTE':(22.54),}
         verdict_d = {0:'PASS', 1:'FAIL', 2:'UNKNOWN'}
 
 
 
         #cmwswinfo=self.read("SYSTem:BASE:OPTion:VERSion?")
 
-        anrswinfo=self.read('MCFV?')+' '+self.read('MCMSV?')
-        version=re.compile('[.0-9]+').findall(anrswinfo)
-        print anrswinfo
+        version=self.read('MCFV?')+' '+self.read('MCMSV?') # Read Anritsu Firmware and Software version
+        value=re.compile('[.0-9]+[.][0-9][0-9]').findall(version) # Extract Version
+        key=re.compile('[a-zA-Z]+').findall(version)              #Extract Type of Version
+        anrswinfo=dict(zip(key,value))
+        #print anrswinfo
         self.wait_for_completion()
 
         logger.debug("System FW Version and SW Version? %s" % anrswinfo)
@@ -431,57 +433,23 @@ class Anritsu(object):
             verdict=2
 
             # Extract THE SW version string
-            #tmp=re.compile('%s,[v|V|x|X]+[0-9]+[.][0-9]+[.][0-9]+' % k)
-            tmp=re.compile('%s,[v|V|x|X]+[0-9]+[.][0-9]+' % k)
             check_str=k
-
-            if tmp.search(anrswinfo):
-
-                # here if string is detected
-
-                check_str=(tmp.search(anrswinfo)).group()
-
-                # Extract the version number
-
-                tmp=re.compile('[.0-9]+')
-
-                xy=((tmp.search(check_str)).group()).split('.')
-                print xy
-                x=int(xy[0])
-
-                y=int(xy[1])
-
-                #z=int(xyz[2])
-
-                if ((x>v[0]) or (x==v[0] and y>v[1])):
-
-                    verdict=0
-
+            for key,value in anrswinfo.iteritems():
+                if k==key:
+                    if value==v or value>v:
+                        verdict=0
+                        break
+                    else:
+                        verdict=1
+                        logger.error("Incorrect SW version %s. Required v%s or later" % (check_str, v))
+                        break
                 else:
-
-                    verdict=1
-
-
-                    logger.error("Incorrect SW version %s. Required v%s.%s or later" % (check_str, v[0], v[1],))
-
-                    sys.exit(CfgError.ERRCODE_SYS_CMW_INCORRECT_SW_VERSION)
-
-            else:
-
-                verdict=2
+                    verdict=2
 
             logger.info("%s check point ...%s" % (check_str, verdict_d[verdict]))
-
             result.append(check_str)
-
-
-
+            result.append(verdict_d[verdict])
         testerinfo = ' '.join(result)
-
-        #result  = [x.replace(',', '_') for x in cmwinfo]
-
-
-
         return testerinfo
 
 
