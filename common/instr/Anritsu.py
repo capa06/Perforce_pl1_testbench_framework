@@ -453,13 +453,13 @@ class Anritsu(object):
         return testerinfo
 
 
-
+    ##Function to be implemented
     #======================================================================
 
     # DEBUG functionalities
 
     #======================================================================
-
+    '''
     def scpi_monitor_start(self):
 
         self.write("TRACe:REMote:MODE:DISPlay:ENABle ANALysis")
@@ -536,12 +536,11 @@ class Anritsu(object):
 
         self.write(r'CONFigure:LTE:SIGN:IQIN:PATH%s %s, %s' % (path_index, pep, lev))
 
-
-
+    '''
 
 
 if __name__ == '__main__':
-
+'''
     #import visa
     #visa.log_to_screen()
     anr=Anritsu('Anritsu','10.21.141.234')
@@ -566,6 +565,6 @@ if __name__ == '__main__':
     print anr.check_sw_version()
     #time.sleep(2)
     anr.close()
+'''
 
-
-#    pass
+    pass
