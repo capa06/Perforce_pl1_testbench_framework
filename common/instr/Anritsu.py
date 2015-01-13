@@ -540,7 +540,7 @@ class Anritsu(object):
 
 
 if __name__ == '__main__':
-'''
+    '''
     #import visa
     #visa.log_to_screen()
     anr=Anritsu('Anritsu','10.21.141.234')
@@ -565,6 +565,6 @@ if __name__ == '__main__':
     print anr.check_sw_version()
     #time.sleep(2)
     anr.close()
-'''
+    '''
 
     pass
