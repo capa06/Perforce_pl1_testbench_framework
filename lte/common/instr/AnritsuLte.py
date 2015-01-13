@@ -377,36 +377,29 @@ class AnritsuLte(Anritsu):
         logger = logging.getLogger("%s._configure_uplink_power_control" % self.name)
 
         #self._param_write("CONFigure:LTE:SIGN:UL:APPower:EASettings", self.common_config.enable_ulpwrctrl_eas, "Enhanced power control")
-        self._param_write('TCPPAT','AUTO','')
-        if self.common_config.enable_ulpwrctrl_eas=="OFF":
-            self._param_write("CONFigure:LTE:SIGN:UL:OLNPower", self.common_config.olnpwr, 'Open Loop Power')
-            self._param_write("CONFigure:LTE:SIGN:UL:PUSCh:TPC:CLTPower", self.common_config.tcp_cltrpwr, 'Closed Loop Power')
-            self._param_write("CONFigure:LTE:SIGN:UL:PUSCh:TPC:SET", self.common_config.tcp_set, 'TCP set')
-            self._param_write("CONFigure:LTE:SIGN:UL:PMAX", self.common_config.pmax, 'Pmax')
-        else:
-            self._param_write("CONFigure:LTE:SIGN:UL:OLNPower", self.common_config.eas_olnpwr, 'Open Loop Power')
-            self._param_write("CONFigure:LTE:SIGN:UL:PUSCh:TPC:CLTPower", self.common_config.eas_tcp_cltrpwr, 'Closed Loop Power')
-            self._param_write("CONFigure:LTE:SIGN:UL:PUSCh:TPC:SET", self.common_config.eas_tcp_set, 'TCP set')
-            self._param_write("CONFigure:LTE:SIGN:UL:PMAX", self.common_config.eas_pmax, 'Pmax')
-            # PRACH enhanced settings
-            self._param_write("CONFigure:LTE:SIGN:UL:APPower:RSPower:ADVanced", self.common_config.eas_rspower, 'PRACH advanced')
-            self._param_write("CONFigure:LTE:SIGN:UL:APPower:PIRPower:ADVanced", self.common_config.eas_pirpower, 'PRACH initial power')
-            self._param_write("CONFigure:LTE:SIGN:UL:APPower:PNPusch:ADVanced", self.common_config.eas_pnpusch, 'PUSCH nominal')
-            self._param_write("CONFigure:LTE:SIGN:UL:APPower:PCALpha:ADVanced", self.common_config.eas_pcalpha, 'alpha')
+        self._param_write('TCPPAT','AUTO','power contronl patern: AUTO')
+        self._param_write('POWOFFSE','0.0','power control offset: 0.0')
+        self._param_write('MAXULPWR',self.self.common_config.pmax,'Pmax')
+
         logger.info("CONFIGURED uplink power control")
 
 
     def lte_config_connection(self, init_s):
         logger = logging.getLogger("%s.lte_config_connection" % self.name)
 
-        self._param_write("CONFigure:LTE:SIGN:CONNection:GHOPping", self.common_config.ghopping, 'group hopping')
-        self._param_write("CONFigure:LTE:SIGN:CONNection:UECategory:MANual", self.common_config.uecat, 'uecat')
-        self._param_write("CONFigure:LTE:SIGN:CONNection:UECategory:REPorted", self.common_config.uecat_reported, 'uecat report')
-        self._param_write("CONFigure:LTE:SIGN:CONNection:DPCYcle", self.common_config.dpcycle, 'paging cycle')
-        self._param_write("CONFigure:LTE:SIGN:CONNection:ASEMission", self.common_config.aseission, 'ASEmission')
-        self._param_write("CONFigure:LTE:SIGN:CONNection:FCOefficient", self.common_config.fcoefficient, 'FCOefficient')
+        self._param_write('GROUPHOP',self.common_config.ghopping,'group hopping')
+        self._param_write("UECAT", self.common_config.uecat, 'uecat') #value=CAT1 to CAT7
+        self._param_write("UE_CAT?", self.common_config.uecat_reported, 'uecat report')
+        self._param_write("PCYCLE", self.common_config.dpcycle, 'paging cycle')
+        self._param_write("SIB2_NS", self.common_config.aseission, 'ASEmission')
+        self._param_write("FILTERCOEF", self.common_config.fcoefficient, 'Filter Coefficient')#FC4 or FC8
+        #self._param_write("CONFigure:LTE:SIGN:CONNection:FCOefficient", self.common_config.fcoefficient, 'FCOefficient')
 
         # Test or Data Application Mode
+        self._param_write("RLCMODE", self.common_config.rlcmode, 'RLC mode')
+        self._param_write("RRCRELEASE", self.common_config.krrc, 'Keep RRC') #ON or OFF, initial ON
+        self._param_write("DNSSERVERIPRES", self.common_config.krrc, 'DNS response') #ON or OFF, initial OFF
+        '''
         self._param_write("CONFigure:LTE:SIGN:CONNection:CTYPe", self.common_config.ctype, 'connection type')
         self._param_write("CONFigure:LTE:SIGN:CONNection:TMODe", self.common_config.tmode, 'test mode')
         self._param_write("CONFigure:LTE:SIGN:CONNection:RLCMode", self.common_config.rlcmode, 'RLC mode')
@@ -416,7 +409,7 @@ class AnritsuLte(Anritsu):
         self._param_write("CONFigure:LTE:SIGN:CONNection:DLPadding", self.common_config.dlpadding, 'DL padding')
         self._param_write("CONFigure:LTE:SIGN:CONNection:DLEinsertion", self.common_config.dleinsertion, 'DL Error insertion')
         self._param_write("CONFigure:LTE:SIGN:CONNection:SDNSpco", self.common_config.sdnspco, 'Send DNS')
-
+        '''
         logger.info("CONFIGURED connection")
 
 
@@ -424,11 +417,10 @@ class AnritsuLte(Anritsu):
         logger = logging.getLogger("%s.lte_config_cfi" % self.name)
 
         logger.info("PCC reduced PDCCH : %s" % self.Anritsu_LTE_CFI_2_RPDCCH[LTE_BW_MHZ_2_CFIMIN[init_s.pcc.bwmhz]])
-        self._param_write("CONFigure:LTE:SIGN:CONNection:PCC:PDCCh:RPDCch", self.Anritsu_LTE_CFI_2_RPDCCH[LTE_BW_MHZ_2_CFIMIN[init_s.pcc.bwmhz]], 'pcc_cfi')
-
+        #self._param_write("CONFigure:LTE:SIGN:CONNection:PCC:PDCCh:RPDCch", self.Anritsu_LTE_CFI_2_RPDCCH[LTE_BW_MHZ_2_CFIMIN[init_s.pcc.bwmhz]], 'pcc_cfi')
         if not init_s.scc is None:
             logger.info("SCC reduced PDCCH : %s" % self.Anritsu_LTE_CFI_2_RPDCCH[LTE_BW_MHZ_2_CFIMIN[init_s.scc.bwmhz]])
-            self._param_write("CONFigure:LTE:SIGN:CONNection:SCC:PDCCh:RPDCch", self.Anritsu_LTE_CFI_2_RPDCCH[LTE_BW_MHZ_2_CFIMIN[init_s.scc.bwmhz]], 'scc_cfi')
+            #self._param_write("CONFigure:LTE:SIGN:CONNection:SCC:PDCCh:RPDCch", self.Anritsu_LTE_CFI_2_RPDCCH[LTE_BW_MHZ_2_CFIMIN[init_s.scc.bwmhz]], 'scc_cfi')
 
         logger.info("CONFIGURED CFI")
 
@@ -466,14 +458,14 @@ class AnritsuLte(Anritsu):
                 pass
 
             # Configure TM and PMI
-            self._param_write("CONFigure:LTE:SIGN:CONNection:SCC:TSCHeme", self.Anritsu_LTE_TM[init_s.scc.tm], 'scc_txscheme')
+            #self._param_write("CONFigure:LTE:SIGN:CONNection:SCC:TSCHeme", self.Anritsu_LTE_TM[init_s.scc.tm], 'scc_txscheme')
             if not init_s.scc.pmi is None:
-                self._param_write("CONFigure:LTE:SIGN:CONNection:SCC:PMATrix", self.Anritsu_LTE_PMI[init_s.scc.pmi], 'pcc_pmi')
+                #self._param_write("CONFigure:LTE:SIGN:CONNection:SCC:PMATrix", self.Anritsu_LTE_PMI[init_s.scc.pmi], 'pcc_pmi')
 
         # Set TXANTS
-        self._param_write("CONFigure:LTE:SIGN:CONNection:PCC:NENBantennas", self.Anritsu_LTE_TXANTS[init_s.pcc.txants], 'txants')
+        #self._param_write("CONFigure:LTE:SIGN:CONNection:PCC:NENBantennas", self.Anritsu_LTE_TXANTS[init_s.pcc.txants], 'txants')
         if not init_s.scc is None:
-            self._param_write("CONFigure:LTE:SIGN:CONNection:SCC:NENBantennas", self.Anritsu_LTE_TXANTS[init_s.scc.txants], 'txants')
+            #self._param_write("CONFigure:LTE:SIGN:CONNection:SCC:NENBantennas", self.Anritsu_LTE_TXANTS[init_s.scc.txants], 'txants')
 
         logger.info("CONFIGURED TM/PMI/TXANTS")
 
@@ -483,21 +475,25 @@ class AnritsuLte(Anritsu):
 
         # Use RMC scheduler for ATTACH
         schedtype="RMC"
-        self._param_write("CONFigure:LTE:SIGN:CONNection:PCC:STYPe", "RMC", 'pcc.schedtype')
+        #self._param_write("CONFigure:LTE:SIGN:CONNection:PCC:STYPe", "RMC", 'pcc.schedtype')
+        self._param_write('CHCODING','RMC','pcc.chcoding:RMC')
+        self._param_write('SCHEDULING','STATIC','pcc.schedtype')
+        self._param_write('CQIINTERVAL','10','CQI reporting interval')#5-40ms, initial 5ms
+        self._param_write('CQI_RANGE','5','CQI counting range')#0-15, initial 3
         if not init_s.scc is None:
-            self._param_write("CONFigure:LTE:SIGN:CONNection:SCC:STYPe", "RMC", 'scc.schedtype')
+            #self._param_write("CONFigure:LTE:SIGN:CONNection:SCC:STYPe", "RMC", 'scc.schedtype')
 
         if self.Anritsu_LTE_CQI_REPORTING[schedtype]=='PER':
-            self._param_write("CONFigure:LTE:SIGN:CQIReporting:ENABle", self.Anritsu_LTE_CQI_REPORTING[schedtype], 'cqi_reporting')
-            self._param_write("CONFigure:LTE:SIGN:CQIReporting:PCC:CINDex", self.pcc_config.cqi_index, 'cqi_index')
+            #self._param_write("CONFigure:LTE:SIGN:CQIReporting:ENABle", self.Anritsu_LTE_CQI_REPORTING[schedtype], 'cqi_reporting')
+            #self._param_write("CONFigure:LTE:SIGN:CQIReporting:PCC:CINDex", self.pcc_config.cqi_index, 'cqi_index')
             if self.Anritsu_LTE_CQI_REPORTING[schedtype]=='PER':
-                self._param_write("CONFigure:LTE:SIGN:CQIReporting:SCC:CINDex", self.scc_config.cqi_index, 'cqi_index')
+                #self._param_write("CONFigure:LTE:SIGN:CQIReporting:SCC:CINDex", self.scc_config.cqi_index, 'cqi_index')
 
 
 
     def lte_config_scheduler(self, init_s):
         logger = logging.getLogger("%s.lte_config_scheduler" % self.name)
-
+        '''
         if init_s.pcc.schedtype=='UDCH':
             schedtype="UDCH"
             self._param_write("CONFigure:LTE:SIGN:CONNection:PCC:STYPe", schedtype, 'pcc.schedtype')
@@ -595,7 +591,7 @@ class AnritsuLte(Anritsu):
             else:
                 logger.error("SCC invalid scheduler type : %s" % init_s.scc.schedtype)
                 sys.exit(CfgError.ERRCODE_TEST_PARAM_INVALID)
-
+        '''
         logger.info("CONFIGURED scheduling information")
 
     def lte_update_scheduler(self, init_s):
@@ -751,14 +747,15 @@ class AnritsuLte(Anritsu):
         logger = logging.getLogger("%s.lte_config_dlharq" % self.name)
 
         if (init_s.pcc.nhrtx is None):
-            self._param_write("CONFigure:LTE:SIGN:CONNection:HARQ:DL:ENABle", "OFF", 'harq')
+            #self._param_write("CONFigure:LTE:SIGN:CONNection:HARQ:DL:ENABle", "OFF", 'harq')
+            self._param_write('MAXHARQTX','1','HARQ off')
         else:
             if (not init_s.pcc.riv is None):
-                self._param_write("CONFigure:LTE:SIGN:CONNection:HARQ:DL:ENABle", "ON", 'harq')
-                self._param_write("CONFigure:LTE:SIGN:CONNection:HARQ:DL:NHT", init_s.pcc.nhrtx, 'pcc.nhrtx')
-                self._param_write("CONFigure:LTE:SIGN:CONNection:HARQ:DL:RVCSequence", "UDEF", 'harqmode')
-                self._param_write("CONFigure:LTE:SIGN:CONNection:HARQ:DL:UDSequence:LENGth", len(init_s.pcc.riv.split(' ')), 'pcc.nhrtx')
-                self._param_write("CONFigure:LTE:SIGN:CONNection:HARQ:DL:UDSequence", init_s.pcc.riv.replace(' ',','), 'pcc.riv')
+                self._param_write("MAXHARQTX", init_s.pcc.nhrtx, 'pcc.nhrtx')
+                #self._param_write("CONFigure:LTE:SIGN:CONNection:HARQ:DL:NHT", init_s.pcc.nhrtx, 'pcc.nhrtx')
+                #self._param_write("CONFigure:LTE:SIGN:CONNection:HARQ:DL:RVCSequence", "UDEF", 'harqmode')
+                #self._param_write("CONFigure:LTE:SIGN:CONNection:HARQ:DL:UDSequence:LENGth", len(init_s.pcc.riv.split(' ')), 'pcc.nhrtx')
+                #self._param_write("CONFigure:LTE:SIGN:CONNection:HARQ:DL:UDSequence", init_s.pcc.riv.replace(' ',','), 'pcc.riv')
             else:
                 logger.error("Invalid HARQ setting: (nhrtx=%s, riv=%s)" % (init_s.scc.schedtype, init_s.pcc.riv))
                 sys.exit(CfgError.ERRCODE_TEST_PARAM_INVALID)
@@ -771,11 +768,11 @@ class AnritsuLte(Anritsu):
 
     def lte_config_rsepre(self, init_s):
         logger = logging.getLogger("%s.lte_config_rsepre" % self.name)
-        self._param_write("CONFigure:LTE:SIGN:DL:PCC:RSEPre:LEVel", init_s.pcc.rsepre, 'pcc.rsepre')
+        self._param_write("OLVL_EPRE", init_s.pcc.rsepre, 'pcc.rsepre')
         logger.debug("Changed PCC RSEPRE level to %s [dBm]" % init_s.pcc.rsepre)
         if not init_s.scc is None:
-            self._param_write("CONFigure:LTE:SIGN:DL:SCC:RSEPre:LEVel", init_s.scc.rsepre, 'scc.rsepre')
-            logger.debug("Changed SCC RSEPRE level to %s [dBm]" % init_s.scc.rsepre)
+            #self._param_write("CONFigure:LTE:SIGN:DL:SCC:RSEPre:LEVel", init_s.scc.rsepre, 'scc.rsepre')
+            #logger.debug("Changed SCC RSEPRE level to %s [dBm]" % init_s.scc.rsepre)
         self.lte_config_snr(init_s)
 
         logger.info("UPDATED rsepre")
@@ -795,6 +792,7 @@ class AnritsuLte(Anritsu):
 
             elif init_s.pcc.chtype.upper()=='AWGN':
                 self.lte_config_channel_awgn(init_s)
+                self._param_write('AWGNLVL','ON','AWGN level on')
                 logger.info("Configured AWGN generator")
 
             elif init_s.pcc.chtype.upper() in ['STCHL','STCHM','STCHH']:
@@ -920,7 +918,7 @@ class AnritsuLte(Anritsu):
                 logging.error("PCC invalid static channel configuration: chtype=%s, txants=%s" % (init_s.scc.chtype, init_s.scc.txants))
                 sys.exit(CfgError.ERRCODE_TEST_PARAM_INVALID)
 
-        self.lte_config_snr(init_s, use_default_snr=1)
+        self.lte_config_snr(init_s, use_default_snr=-1)
 
 
     def lte_fsim_int_toggle(self, state, carrier):
@@ -971,8 +969,8 @@ class AnritsuLte(Anritsu):
             logger.error("Invalid carrier %s. TEST ABORTED" % state)
             sys.exit(CfgError.ERRCODE_TEST_PARAM_INVALID)
 
-        cmd       = "CONFigure:LTE:SIGN:DL:%s:AWGN" % carrier
-
+        #cmd       = "CONFigure:LTE:SIGN:DL:%s:AWGN" % carrier
+        cmd='AWGNLVL'
         readback  = self._param_read(cmd)
         completed = (readback == state) or ((state == "ON") and (readback != "OFF"))
 
@@ -1032,10 +1030,10 @@ class AnritsuLte(Anritsu):
                 logger.info("PCC SNR update for %-10s: %s)" % (init_s.pcc.chtype, (self.Anritsu_LTE_SNR0 if use_default_snr else init_s.pcc.snr)))
                 pcc_awgn_level= (init_s.pcc.rsepre-self.Anritsu_LTE_SNR0) if use_default_snr else (init_s.pcc.rsepre-init_s.pcc.snr)
                 if init_s.pcc.chtype in ['AWGN', 'STCHL', 'STCHM', 'STCHH']:
-                    self._param_write("CONFigure:LTE:SIGN:DL:PCC:AWGN", pcc_awgn_level, 'pcc_awgn_level')
+                    self._param_write("AWGNPWR", pcc_awgn_level, 'pcc_awgn_level')#AWGN power level -30dB-5dB
 
                 if (init_s.pcc.chtype in self.Anritsu_LTE_FADING_CHANNELS):
-                    self._param_write("CONFigure:LTE:SIGN:FADing:PCC:AWGN:SNRatio", init_s.pcc.snr, 'pcc.fsim.snr')
+                    self._param_write("AWGNPWR", init_s.pcc.snr, 'pcc.fsim.snr')
             else:
                 logger.error("PCC invalid SNR : None")
                 sys.exit(CfgError.ERRCODE_TEST_PARAM_INVALID)
@@ -1046,9 +1044,9 @@ class AnritsuLte(Anritsu):
                     logger.info("SCC SNR update for %-10s: %s)" % (init_s.scc.chtype, (self.Anritsu_LTE_SNR0 if use_default_snr else init_s.scc.snr)))
                     scc_awgn_level= (init_s.scc.rsepre-self.Anritsu_LTE_SNR0) if use_default_snr else (init_s.scc.rsepre-init_s.scc.snr)
                     if init_s.scc.chtype in ['AWGN', 'STCHL', 'STCHM', 'STCHH']:
-                        self._param_write("CONFigure:LTE:SIGN:DL:SCC:AWGN", scc_awgn_level, 'scc_awgn_level')
+                        self._param_write("AWGNPWR", scc_awgn_level, 'scc_awgn_level')
                     if (init_s.scc.chtype in self.Anritsu_LTE_FADING_CHANNELS):
-                        self._param_write("CONFigure:LTE:SIGN:FADing:SCC:AWGN:SNRatio", init_s.scc.snr, 'scc.fsim.snr')
+                        self._param_write("AWGNPWR", init_s.scc.snr, 'scc.fsim.snr')
                 else:
                     logger.error("SCC invalid SNR : None")
                     sys.exit(CfgError.ERRCODE_TEST_PARAM_INVALID)
