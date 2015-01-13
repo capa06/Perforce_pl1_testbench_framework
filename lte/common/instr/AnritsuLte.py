@@ -460,11 +460,13 @@ class AnritsuLte(Anritsu):
             # Configure TM and PMI
             #self._param_write("CONFigure:LTE:SIGN:CONNection:SCC:TSCHeme", self.Anritsu_LTE_TM[init_s.scc.tm], 'scc_txscheme')
             if not init_s.scc.pmi is None:
+                logger.error('Carrier Agregation not supported yet')
                 #self._param_write("CONFigure:LTE:SIGN:CONNection:SCC:PMATrix", self.Anritsu_LTE_PMI[init_s.scc.pmi], 'pcc_pmi')
 
         # Set TXANTS
         #self._param_write("CONFigure:LTE:SIGN:CONNection:PCC:NENBantennas", self.Anritsu_LTE_TXANTS[init_s.pcc.txants], 'txants')
         if not init_s.scc is None:
+            logger.error('Carrier Agregation not supported yet')
             #self._param_write("CONFigure:LTE:SIGN:CONNection:SCC:NENBantennas", self.Anritsu_LTE_TXANTS[init_s.scc.txants], 'txants')
 
         logger.info("CONFIGURED TM/PMI/TXANTS")
@@ -481,12 +483,15 @@ class AnritsuLte(Anritsu):
         self._param_write('CQIINTERVAL','10','CQI reporting interval')#5-40ms, initial 5ms
         self._param_write('CQI_RANGE','5','CQI counting range')#0-15, initial 3
         if not init_s.scc is None:
+            logger.error('Function not supported yet')
             #self._param_write("CONFigure:LTE:SIGN:CONNection:SCC:STYPe", "RMC", 'scc.schedtype')
 
         if self.Anritsu_LTE_CQI_REPORTING[schedtype]=='PER':
+            logger.error('Function not supported yet')
             #self._param_write("CONFigure:LTE:SIGN:CQIReporting:ENABle", self.Anritsu_LTE_CQI_REPORTING[schedtype], 'cqi_reporting')
             #self._param_write("CONFigure:LTE:SIGN:CQIReporting:PCC:CINDex", self.pcc_config.cqi_index, 'cqi_index')
             if self.Anritsu_LTE_CQI_REPORTING[schedtype]=='PER':
+                logger.error('Function not supported yet')
                 #self._param_write("CONFigure:LTE:SIGN:CQIReporting:SCC:CINDex", self.scc_config.cqi_index, 'cqi_index')
 
 
@@ -771,6 +776,7 @@ class AnritsuLte(Anritsu):
         self._param_write("OLVL_EPRE", init_s.pcc.rsepre, 'pcc.rsepre')
         logger.debug("Changed PCC RSEPRE level to %s [dBm]" % init_s.pcc.rsepre)
         if not init_s.scc is None:
+            logger.error('Function not supported yet')
             #self._param_write("CONFigure:LTE:SIGN:DL:SCC:RSEPre:LEVel", init_s.scc.rsepre, 'scc.rsepre')
             #logger.debug("Changed SCC RSEPRE level to %s [dBm]" % init_s.scc.rsepre)
         self.lte_config_snr(init_s)
@@ -1028,7 +1034,7 @@ class AnritsuLte(Anritsu):
         if not init_s.pcc.chtype is None:
             if not init_s.pcc.snr is None:
                 logger.info("PCC SNR update for %-10s: %s)" % (init_s.pcc.chtype, (self.Anritsu_LTE_SNR0 if use_default_snr else init_s.pcc.snr)))
-                pcc_awgn_level= (init_s.pcc.rsepre-self.Anritsu_LTE_SNR0) if use_default_snr else (init_s.pcc.rsepre-init_s.pcc.snr)
+                pcc_awgn_level= (-self.Anritsu_LTE_SNR0) if use_default_snr else (-init_s.pcc.snr)
                 if init_s.pcc.chtype in ['AWGN', 'STCHL', 'STCHM', 'STCHH']:
                     self._param_write("AWGNPWR", pcc_awgn_level, 'pcc_awgn_level')#AWGN power level -30dB-5dB
 
