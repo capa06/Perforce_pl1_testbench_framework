@@ -1252,27 +1252,26 @@ class AnritsuLte(Anritsu):
         self.lte_set_measurement_period(init_s)
 
         # Configure BLER measurements
-        self._param_write("CONFigure:LTE:SIGN:EBLer:REPetition", "SING", 'single shot')
-        self._param_write("CONFigure:LTE:SIGN:EBLer:SCONdition", "NONE", 'stop condition')
-        self._param_write("CONFigure:LTE:SIGN:EBLer:SFRames", self.meas.period_nsf, 'meas_period')
+        self._param_write("TPUT_MEAS", "ON", 'Throughput Measurement ON')
+        self._param_write("CQI_MEAS", "ON", 'CQI Measurement ON')
+        self._param_write("TPUT_SAMPLE", self.meas.period_nsf, 'Number of Sample')
 
 
         # Wait for measurements RDY
         num_iter, NUM_ITER_MAX = 0, int(math.ceil(self.meas.timeout/self.meas.check))
         while ( num_iter < NUM_ITER_MAX ):                                                                                                                                    # Initialise and start BLER measurements
             num_iter += 1
-            self.write("STOP:LTE:SIGN:EBLer")
-            #self.write("ABORt:LTE:SIGN:EBLer")
-            self.write("INIT:LTE:SIGN:EBLer")
+            self.write('MEASSTOP')
+            self.write("SWP")
             self.insert_pause(self.meas.check)
             logger.debug("FETCHING DLBLER MEAS: iteration %d of %d" % (num_iter, NUM_ITER_MAX))
-            state=self.read("FETCh:LTE:SIGN:EBLer:STATe?")
+            state=self.read("SWP?")
             logger.debug("FETCH STATE : %s" % state)
-            if (state == 'RDY') : break
+            if (state == '0') : break
 
         if num_iter==NUM_ITER_MAX:
-            logger.error("CWM not responding to query on measurements")
-            self.write("ABORt:LTE:SIGN:EBLer")
+            logger.error("Anritsu not responding to query on measurements")
+            self.write("MEASSTOP")
             sys.exit(CfgError.ERRCODE_SYS_Anritsu_TIMEOUT)
 
         # Fetch measurements
@@ -1280,57 +1279,57 @@ class AnritsuLte(Anritsu):
         scc_meas_dlbler_l = None
         pcc_meas_ulbler_l = None
 
-        if (state == 'RDY'):
-            pcc_meas_dlbler_str = self.read("FETCh:LTE:SIGN:EBLer:PCC:ABSolute?")
+        if (state == '0'):
+            pcc_meas_dlbler_str = self.read("TPUT? TTL")
             pcc_meas_dlbler_l   = pcc_meas_dlbler_str.split(',')
             logger.debug("pcc_meas_dlbler_l : %s" % pcc_meas_dlbler_l)
 
-            pcc_meas_ulbler_str = self.read("FETCh:LTE:SIGN:EBLer:Uplink?")
+            pcc_meas_ulbler_str = self.read("TPUT? TTL")
             pcc_meas_ulbler_l   = pcc_meas_ulbler_str.split(',')
             logger.debug("pcc_meas_ulbler_l : %s" % pcc_meas_dlbler_l)
 
             if not init_s.scc is None:
                 # Fetch measurements
-                scc_meas_dlbler_str = self.read("FETCh:LTE:SIGN:EBLer:SCC:ABSolute?")
+                scc_meas_dlbler_str = self.read("TPUT_BLER? SCC1")
                 scc_meas_dlbler_l   = scc_meas_dlbler_str.split(',')
                 logger.debug("scc_meas_dlbler_l : %s" % scc_meas_dlbler_l)
         else:
-            logger.error("CWM not responding to query on measurements")
-            self.write("ABORt:LTE:SIGN:EBLer")
+            logger.error("Anritsu not responding to query on measurements")
+            self.write("MEASSTOP")
             sys.exit(CfgError.ERRCODE_SYS_Anritsu_TIMEOUT)
 
         # Build measurements structure, format the values and check the validity
         try:
             # DL measurements
-            self.meas_dlbler_s.pcc.dlrely       = int(pcc_meas_dlbler_l[0])
-            self.meas_dlbler_s.pcc.ack          = int(pcc_meas_dlbler_l[1])
-            self.meas_dlbler_s.pcc.nack         = int(pcc_meas_dlbler_l[2])
-            self.meas_dlbler_s.pcc.sf_total     = int(pcc_meas_dlbler_l[3])
-            self.meas_dlbler_s.pcc.dlthr        = float(pcc_meas_dlbler_l[4])
-            self.meas_dlbler_s.pcc.dlthr_min    = float(pcc_meas_dlbler_l[5])
-            self.meas_dlbler_s.pcc.dlthr_max    = float(pcc_meas_dlbler_l[6])
-            self.meas_dlbler_s.pcc.dtx          = int(pcc_meas_dlbler_l[7])
-            self.meas_dlbler_s.pcc.sf_scheduled = int(pcc_meas_dlbler_l[8])
-            self.meas_dlbler_s.pcc.cqi          = int(pcc_meas_dlbler_l[9]) if (pcc_meas_dlbler_l[9] !='INV') else 0
+            self.meas_dlbler_s.pcc.dlrely       = int(self.read("TPUT? PER PCC"))
+            self.meas_dlbler_s.pcc.ack          = int(self.read("TPUT_BLERTRANSMIT? PCC")-self.read("TPUT_BLERCNTNACK? PCC"))
+            self.meas_dlbler_s.pcc.nack         = int(self.read("TPUT_BLERCNTNACK? PCC"))
+            self.meas_dlbler_s.pcc.sf_total     = int(self.read("TPUT_SAMPLE?"))
+            self.meas_dlbler_s.pcc.dlthr        = float(self.read("TPUT? PCC"))
+            self.meas_dlbler_s.pcc.dlthr_min    = float(self.read("TPUT? PCC"))
+            self.meas_dlbler_s.pcc.dlthr_max    = float(self.read("TPUT? PCC"))
+            self.meas_dlbler_s.pcc.dtx          = int(self.read("TPUT_BLERCNTDTX? PCC"))
+            self.meas_dlbler_s.pcc.sf_scheduled = int(self.read("TPUT_BLERTRANSMIT? PCC"))
+            self.meas_dlbler_s.pcc.cqi          = int(self.read("CQI? PCC")) #if (pcc_meas_dlbler_l[9] !='INV') else 0
 
             ## UL measurements
-            self.meas_ulbler_s.pcc.ulrely       = int(pcc_meas_ulbler_l[0])
-            self.meas_ulbler_s.pcc.ulbler       = float(pcc_meas_ulbler_l[1])
-            self.meas_ulbler_s.pcc.ulthr        = 0 if (pcc_meas_ulbler_l[2] == 'NCAP') else float(pcc_meas_ulbler_l[2])
-            self.meas_ulbler_s.pcc.crc_pass     = int(pcc_meas_ulbler_l[3])
-            self.meas_ulbler_s.pcc.crc_fail     = int(pcc_meas_ulbler_l[4])
+            self.meas_ulbler_s.pcc.ulrely       = int(self.read("UL_TPUT? PER"))
+            self.meas_ulbler_s.pcc.ulbler       = float(self.read("UL_TPUT_BLER?"))
+            self.meas_ulbler_s.pcc.ulthr        = float(self.read("UL_TPUT?"))
+            self.meas_ulbler_s.pcc.crc_pass     = int(self.read("UL_TPUT_BLERRECEIVE?")-self.read("UL_TPUT_BLERCNT?"))
+            self.meas_ulbler_s.pcc.crc_fail     = int(self.read("UL_TPUT_BLERCNT?"))
 
             if not init_s.scc is None:
                 # DL measurements
-                self.meas_dlbler_s.scc.dlrely       = int(scc_meas_dlbler_l[0])
-                self.meas_dlbler_s.scc.ack          = int(scc_meas_dlbler_l[1])
-                self.meas_dlbler_s.scc.nack         = int(scc_meas_dlbler_l[2])
-                self.meas_dlbler_s.scc.sf_total     = int(scc_meas_dlbler_l[3])
-                self.meas_dlbler_s.scc.dlthr        = float(scc_meas_dlbler_l[4])
-                self.meas_dlbler_s.scc.dlthr_min    = float(scc_meas_dlbler_l[5])
-                self.meas_dlbler_s.scc.dlthr_max    = float(scc_meas_dlbler_l[6])
-                self.meas_dlbler_s.scc.dtx          = int(scc_meas_dlbler_l[7])
-                self.meas_dlbler_s.scc.sf_scheduled = int(scc_meas_dlbler_l[8])
+                self.meas_dlbler_s.scc.dlrely       = int(self.read("TPUT? PER SCC1"))
+                self.meas_dlbler_s.scc.ack          = int(self.read("TPUT_BLERTRANSMIT? SCC1")-self.read("TPUT_BLERCNTNACK? SCC1"))
+                self.meas_dlbler_s.scc.nack         = int(self.read("TPUT_BLERCNTNACK? SCC1"))
+                self.meas_dlbler_s.scc.sf_total     = int(self.read("TPUT_SAMPLE?"))
+                self.meas_dlbler_s.scc.dlthr        = float(self.read("TPUT? SCC1"))
+                self.meas_dlbler_s.scc.dlthr_min    = float(self.read("TPUT? SCC1"))
+                self.meas_dlbler_s.scc.dlthr_max    = float(self.read("TPUT? SCC1"))
+                self.meas_dlbler_s.scc.dtx          = int(self.read("TPUT_BLERCNTDTX? SCC1"))
+                self.meas_dlbler_s.scc.sf_scheduled = int(self.read("TPUT_BLERTRANSMIT? SCC1"))
                 self.meas_dlbler_s.scc.cqi          = int(scc_meas_dlbler_l[9]) if (scc_meas_dlbler_l[9] !='INV') else 0
         except ValueError:
                 logger.error("Anritsu INVALID MEASUREMENT")
@@ -1359,7 +1358,7 @@ class AnritsuLte(Anritsu):
         dlthr_l = [float(x) for x in meas_l[1::2]]
         N = len(dlthr_l)
         if N> 0:
-            dlthr_avrg_Mbps = sum(dlthr_l)/N*0.001
+            dlthr_avrg_Mbps = self.read('TPUT?')*0.001
         else:
             dlthr_avrg_Mbps = None
         return dlthr_avrg_Mbps
@@ -1368,7 +1367,7 @@ class AnritsuLte(Anritsu):
         logger = logging.getLogger('%s.lte_meas_dlthr' % self.name)
 
         #dlthr_cw1_Mbps = self.read("SENSe:LTE:SIGN:CONNection:ETHRoughput:DL:PCC:STReam1?").replace(',', ' ')
-        dlthr_cw1_Mbps = self.read("FETCh:LTE:SIGN:EBLer:TRACe:THRoughput:PCC:STReam1?").replace(',', ' ')
+        dlthr_cw1_Mbps = self.read("TPUT_CW0? PCC").replace(',', ' ')*0.001
         if 0: logger.debug("PCC RAW MEAS DLTHR CW1 : %s" % dlthr_cw1_Mbps)
         try:
             self.meas_dlthr_s.pcc.dlthr_cw1 = float(self._lte_compute_average_dlthr_per_cw(dlthr_cw1_Mbps))
@@ -1377,7 +1376,7 @@ class AnritsuLte(Anritsu):
         logger.debug("PCC DLTHR CW1 : %s[Mbps]" % self.meas_dlthr_s.pcc.dlthr_cw1)
 
         if init_s.pcc.tm in [3, 4]:
-            dlthr_cw2_Mbps = self.read("FETCh:LTE:SIGN:EBLer:TRACe:THRoughput:PCC:STReam2?").replace(',', ' ')
+            dlthr_cw2_Mbps = self.read("TPUT_CW1? PCC").replace(',', ' ')*0.001
             if 0: logger.debug("PCC RAW MEAS DLTHR CW2 : %s" % dlthr_cw2_Mbps)
             try:
                 self.meas_dlthr_s.pcc.dlthr_cw2 = float(self._lte_compute_average_dlthr_per_cw(dlthr_cw2_Mbps))
@@ -1386,7 +1385,7 @@ class AnritsuLte(Anritsu):
             logger.debug("PCC DLTHR CW2 : %s[Mbps]" % self.meas_dlthr_s.pcc.dlthr_cw2)
 
         if not init_s.scc is None:
-            dlthr_cw1_Mbps = self.read("FETCh:LTE:SIGN:EBLer:TRACe:THRoughput:SCC:STReam1?").replace(',', ' ')
+            dlthr_cw1_Mbps = self.read("TPUT_CW0? SCC1").replace(',', ' ')*0.001
             if 0: logger.debug("SCC RAW MEAS DLTHR CW1 : %s" % dlthr_cw1_Mbps)
             try:
                 self.meas_dlthr_s.scc.dlthr_cw1 = float(self._lte_compute_average_dlthr_per_cw(dlthr_cw1_Mbps))
@@ -1394,7 +1393,7 @@ class AnritsuLte(Anritsu):
                 self.meas_dlthr_s.scc.dlthr_cw1 = None
             logger.debug("SCC DLTHR CW1 : %s[Mbps]" % self.meas_dlthr_s.scc.dlthr_cw1)
             if init_s.scc.tm in [3, 4]:
-                dlthr_cw2_Mbps = self.read("FETCh:LTE:SIGN:EBLer:TRACe:THRoughput:SCC:STReam2?").replace(',', ' ')
+                dlthr_cw2_Mbps = self.read("TPUT_CW1? SCC1").replace(',', ' ')*0.001
                 if 0: logger.debug("SCC RAW MEAS DLTHR CW2 : %s" % dlthr_cw2_Mbps)
                 try:
                     self.meas_dlthr_s.scc.dlthr_cw2 = float(self._lte_compute_average_dlthr_per_cw(dlthr_cw2_Mbps))
@@ -1423,11 +1422,12 @@ class AnritsuLte(Anritsu):
         logger = logging.getLogger('%s.lte_meas_csi' % self.name)
 
         if not init_s.pcc.tm in [1]:
-            self.meas_rank_s.pcc.rank=self.read("FETCh:LTE:SIGN:EBLer:PCC:RI?").replace(',', ' ')
+            self.meas_rank_s.pcc.rank=self.read("RI?").replace(',', ' ')
             logger.debug("PCC RI : %s" % self.meas_rank_s.pcc.rank)
 
-        self.meas_cqi_s.pcc.cqi_cw1=self.read("FETCh:LTE:SIGN:EBLer:TRACe:CQIReporting:PCC:STReam1?").replace(',', ' ')
-        logger.debug("PCC CQI CW1: %s" % self.meas_cqi_s.pcc.cqi_cw1)
+        #self.meas_cqi_s.pcc.cqi_cw1=self.read("FETCh:LTE:SIGN:EBLer:TRACe:CQIReporting:PCC:STReam1?").replace(',', ' ')
+        #logger.debug("PCC CQI CW1: %s" % self.meas_cqi_s.pcc.cqi_cw1)
+        '''
         if init_s.pcc.tm in [4]:
             self.meas_cqi_s.pcc.cqi_cw2=self.read("FETCh:LTE:SIGN:EBLer:TRACe:CQIReporting:PCC:STReam2?").replace(',', ' ')
             logger.debug("PCC CQI CW2: %s" % self.meas_cqi_s.pcc.cqi_cw2)
@@ -1452,14 +1452,14 @@ class AnritsuLte(Anritsu):
                 logger.debug("SCC PMI RI1: %s" % self.meas_pmi_s.scc.pmi_ri1)
                 self.meas_pmi_s.scc.pmi_ri2=self.read("FETCh:LTE:SIGN:EBLer:SCC:PMI:RI2?").replace(',', ' ')
                 logger.debug("SCC PMI RI2: %s" % self.meas_pmi_s.scc.pmi_ri2)
-
+        '''
 
 
 
     def lte_meas_maxthr_read(self):
         logger = logging.getLogger('lte_meas_maxthr_read')
-        max_dlthr='%s' % self.read("SENSe:LTE:SIGN:CONNection:ETHRoughput:DL:ALL?")
-        max_ulthr='%s' % self.read("SENSe:LTE:SIGN:CONNection:ETHRoughput:UL?")
+        max_dlthr='%s' % self.read("TPUT?")*0.001
+        max_ulthr='%s' % self.read("UL_TPUT?")*0.001
         max_dlthr='%.6f' % float(max_dlthr)
         max_ulthr='%.6f' % float(max_ulthr)
         logger.info("------------------------------------------------")
