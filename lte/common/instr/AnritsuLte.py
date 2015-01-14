@@ -1484,7 +1484,7 @@ class AnritsuLte(Anritsu):
         cell_state = self.read("CALLSTAT?")
 
         logger.debug("Initial Cell state %s" % cell_state)
-        cell_on = (cell_state == "2")
+        cell_on = (cell_state == "1")
 
         while ( (not cell_on) and (num_iter < NUM_ITER_MAX)):
             num_iter += 1
@@ -1493,7 +1493,7 @@ class AnritsuLte(Anritsu):
 
             cell_state=self.read("CALLSTAT?")
 
-            cell_on=(cell_state == "2")
+            cell_on=(cell_state == "1")
             if cell_on: break
             time.sleep(POLL_INTERVAL)
 
@@ -1509,19 +1509,19 @@ class AnritsuLte(Anritsu):
         POLL_INTERVAL = 5
 
 
-        cell_state = self.read("SOURce:LTE:SIGNaling:CELL:STATe?")
+        cell_state = self.read("CALLSTAT?")
 
         logger.debug("Initial Cell state %s" % cell_state)
-        cell_off = (cell_state == "OFF")
+        cell_off = (cell_state == "0")
 
         while ( (not cell_off) and (num_iter < NUM_ITER_MAX)):
             num_iter += 1
             logger.info("Turning cell OFF: iteration %d of %d" % (num_iter, NUM_ITER_MAX))
-            self.write("SOURce:LTE:SIGN:CELL:STATe OFF")
+            self.write("CALLPROC OFF")
 
-            cell_state=self.read("SOURce:LTE:SIGNaling:CELL:STATe?")
+            cell_state=self.read("CALLSTAT?")
 
-            cell_off=(cell_state == "OFF")
+            cell_off=(cell_state == "0")
             if cell_off: break
             time.sleep(POLL_INTERVAL)
 
@@ -1541,18 +1541,18 @@ class AnritsuLte(Anritsu):
         logger.info("DUT_ATTACH_PROCEDURE:")
 
 
-        cell_state = self.read("SOURce:LTE:SIGNaling:CELL:STATe?")    # Get the current state
+        cell_state = self.read("CALLSTAT?")    # Get the current state
 
 
-        if (cell_state == "OFF"):
+        if (cell_state == "0"):
             self.cell_on()
 
         while ( num_iter < NUM_ITER_MAX):
             num_iter += 1
             logger.info("ATTACH_PROCEDURE: iteration %d of %d" % (num_iter, NUM_ITER_MAX))
-            dut_state=self.read('FETCh:LTE:SIGN:PSWitched:STATe?')
+            dut_state=self.read('CALLSTAT?')
 
-            attached=(dut_state == 'ATT')
+            attached=(dut_state == '2')
             if attached: break
             time.sleep(POLL_INTERVAL)
 
@@ -1570,22 +1570,22 @@ class AnritsuLte(Anritsu):
         POLL_INTERVAL = 5
 
 
-        curr_state = self.read("FETCh:LTE:SIGN:PSWitched:State?")
+        curr_state = self.read("CALLSTAT?")
 
         logger.debug("DUT_Connect(): DUT initial state : %s " % curr_state)
 
-        if (curr_state != "ATT"):
+        if (curr_state != "2"):
             logger.error("DUT must be attached before the connection")
             return connected
 
-        self.write("CALL:LTE:SIGN:PSWitched:ACTion CONNect")
+        self.write("CALLSA")
 
         while (num_iter < NUM_ITER_MAX):
             num_iter += 1
             logger.info("CONNECT_PROCEDURE: iteration %d of %d" % (num_iter, NUM_ITER_MAX))
-            dut_state=self.read("FETCh:LTE:SIGN:PSWitched:State?")
+            dut_state=self.read("CALLSTAT?")
 
-            connected = (dut_state == 'CEST')
+            connected = (dut_state == '6')
             if connected : break
             time.sleep(POLL_INTERVAL)
 
@@ -1602,17 +1602,17 @@ class AnritsuLte(Anritsu):
         POLL_INTERVAL = 2
 
         # Get the current state
-        curr_state = self.read("FETCh:LTE:SIGN:PSWitched:State?")
+        curr_state = self.read("CALLSTAT?")
         logger.debug("DUT initial state : %s " % curr_state)
-        if (curr_state != "CEST"):
+        if (curr_state != "6"):
             logger.error("DUT must be connected before the disconnection")
             return disconnected
-        self.write("CALL:LTE:SIGN:PSWitched:ACTion DISConnect")
+        self.write("CALLSO")
         while (num_iter < NUM_ITER_MAX):
             num_iter += 1
             logger.info("DISCONNECT_PROCEDURE: iteration %d of %d" % (num_iter, NUM_ITER_MAX))
-            dut_state=self.read("FETCh:LTE:SIGN:PSWitched:State?")
-            disconnected = (dut_state == 'ATT')
+            dut_state=self.read("CALLSTAT?")
+            disconnected = (dut_state == '2')
             if disconnected : break
             time.sleep(POLL_INTERVAL)
 
@@ -1629,19 +1629,19 @@ class AnritsuLte(Anritsu):
         POLL_INTERVAL = 2
 
         # Get the current state
-        curr_state = self.read("FETCh:LTE:SIGN:PSWitched:State?")
+        curr_state = self.read("CALLSTAT?")
         logger.debug("DUT_Detach(): DUT initial state : %s " % curr_state)
-        if (curr_state != "CEST") and (curr_state != "ATT"):
+        if (curr_state != "6") and (curr_state != "2"):
             logger.error("DUT must be ATTACHED or CONNECTED before detaching")
             return detached
-        self.write("CALL:LTE:SIGN:PSWitched:ACTion DETach")
+        self.write("CALLPROC OFF")
 
 
         while (num_iter < NUM_ITER_MAX):
             num_iter += 1
             logger.info("DETACH_PROCEDURE: iteration %d of %d" % (num_iter, NUM_ITER_MAX))
-            dut_state=self.read("FETCh:LTE:SIGN:PSWitched:State?")
-            detached = (dut_state== 'ON')
+            dut_state=self.read("CALLSTAT?")
+            detached = (dut_state== '0')
             if detached: break
             time.sleep(POLL_INTERVAL)
 
