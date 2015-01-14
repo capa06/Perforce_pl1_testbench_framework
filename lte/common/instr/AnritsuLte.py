@@ -1481,24 +1481,24 @@ class AnritsuLte(Anritsu):
         self.lte_cell_off()
 
 
-        cell_state = self.read("SOURce:LTE:SIGNaling:CELL:STATe?")
+        cell_state = self.read("CALLSTAT?")
 
         logger.debug("Initial Cell state %s" % cell_state)
-        cell_on = (cell_state == "ON")
+        cell_on = (cell_state == "2")
 
         while ( (not cell_on) and (num_iter < NUM_ITER_MAX)):
             num_iter += 1
             logger.info("Turning cell ON: iteration %d of %d" % (num_iter, NUM_ITER_MAX))
-            self.write("SOURce:LTE:SIGN:CELL:STATe ON")
+            self.write("CALLPROC ON")# CALL PROCESSING FUNCTION ON
 
-            cell_state=self.read("SOURce:LTE:SIGNaling:CELL:STATe?")
+            cell_state=self.read("CALLSTAT?")
 
-            cell_on=(cell_state == "ON")
+            cell_on=(cell_state == "2")
             if cell_on: break
             time.sleep(POLL_INTERVAL)
 
         if (num_iter == NUM_ITER_MAX):
-            logging.error("CWM TIMEOUT turning the cell ON. TEST ABORTED")
+            logging.error("Anritsu TIMEOUT turning the cell ON. TEST ABORTED")
             sys.exit(CfgError.ERRCODE_SYS_Anritsu_TIMEOUT)
         return cell_on
 
