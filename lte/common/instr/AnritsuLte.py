@@ -280,9 +280,45 @@ class AnritsuLte(Anritsu):
             # Carrier Aggregation scenario
             # ----------------------------
             if init_s.pcc.tm == 1:
-                logger.error("Carrier Agregation scenario not supported by Anritsu yet : TM %s" % init_s.pcc.tm)
+
+                # Configure scenario for CA SISO
+                if (not init_s.pcc.chtype is None) and (init_s.pcc.chtype in self.Anritsu_LTE_FADING_CHANNELS):
+                    #self._param_write("ROUTe:LTE:SIGN:SCENario:CATF:INTernal", self.common_config.routing_ca_siso, 'ca_siso_fading')
+                    logger.error("Fading Channel not supported by Anritsu")
+                    sys.exit(CfgError.ERRCODE_TEST_PARAM_INVALID)
+                else:
+                    #self._param_write("ROUTe:LTE:SIGN:SCENario:CATRfout", self.common_config.routing_ca_siso, 'ca_siso')
+                    self._param_write('DLSCC','1','1 scc configureed siso')
+                # Configure attenuation CA SISO
+
+                #self._param_write("CONFigure:LTE:SIGN:RFSettings:PCC:EATTenuation:INPut1", self.pcc_config.eatt_in1, 'pcc_att_in1')
+                #self._param_write("CONFigure:LTE:SIGN:RFSettings:PCC:EATTenuation:OUTPut1", self.pcc_config.eatt_out1, 'pcc_att_out1')
+                #self._param_write("CONFigure:LTE:SIGN:RFSettings:SCC:EATTenuation:OUTPut1", self.scc_config.eatt_out1, 'scc_att_out1')
+
+            elif init_s.pcc.tm in [2,3,4]:
+
+                # Configure CA MIMO2x2 scenario
+                if (not init_s.pcc.chtype is None) and (init_s.pcc.chtype in self.Anritsu_LTE_FADING_CHANNELS):
+                    logger.error("Fading Channel not supported by Anritsu")
+                    sys.exit(CfgError.ERRCODE_TEST_PARAM_INVALID)
+                    #self._param_write("ROUTe:LTE:SIGN:SCENario:CAFF:INTernal", self.common_config.routing_ca_mimo2x2, 'ca_mimo2x2_fading')
+                else:
+                    #self._param_write("ROUTe:LTE:SIGN:SCENario:CAFRfout", self.common_config.routing_ca_mimo2x2, 'ca_mimo2x2')
+                    self._param_write('DLSCC','1','1 scc configured for 2x2 mimo ')
+                # Configure attenuation CA MIMO2x2
+                self._param_write("CONFigure:LTE:SIGN:RFSettings:PCC:EATTenuation:INPut1",  self.pcc_config.eatt_in1, 'pcc_att_in1')
+                self._param_write("CONFigure:LTE:SIGN:RFSettings:PCC:EATTenuation:OUTPut1", self.pcc_config.eatt_out1, 'pcc_att_out1')
+                self._param_write("CONFigure:LTE:SIGN:RFSettings:PCC:EATTenuation:OUTPut2", self.pcc_config.eatt_out2, 'pcc_att_out2')
+                #self._param_write("CONFigure:LTE:SIGN:RFSettings:SCC:EATTenuation:OUTPut1", self.scc_config.eatt_out1, 'scc_att_out1')
+                #self._param_write("CONFigure:LTE:SIGN:RFSettings:SCC:EATTenuation:OUTPut2", self.scc_config.eatt_out2, 'scc_att_out2')
+
+            else:
+                logger.error("Transmission mode not supported yet : TM %s" % init_s.pcc.tm)
                 sys.exit(CfgError.ERRCODE_TEST_PARAM_INVALID)
 
+            # Set SCC MODE
+            #self._param_write("CONFigure:LTE:SIGN:SCC:AMODe", "AUTO", 'scc_mode')
+            self._parame_write('ACT_SCC1','ON','scc_mode activated')
 
         else:
             # ----------------------------
@@ -297,7 +333,7 @@ class AnritsuLte(Anritsu):
                     sys.exit(CfgError.ERRCODE_TEST_PARAM_INVALID)
                 else:
                     # SC SISO without fading simulator
-                    self._param_write("SCENARIO", self.common_config.routing_siso, 'siso')
+                    self._param_write("ANTCONFIG", Anritsu_LTE_TM[init_s.pcc.tm], 'siso')
                 # Configure attenuation SC SISO
 
 
@@ -310,7 +346,7 @@ class AnritsuLte(Anritsu):
                     sys.exit(CfgError.ERRCODE_TEST_PARAM_INVALID)
                 else:
                     # SC MIMO2x2 without fading simulator
-                    self._param_write("SCENARIO", self.common_config.routing_mimo2x2, 'mimo2x2')
+                    self._param_write("ANTCONFIG", Anritsu_LTE_TM[init_s.pcc.tm], 'mimo2x2')
 
                 # Configure attenuation SC MIMO2x2
 
@@ -328,9 +364,16 @@ class AnritsuLte(Anritsu):
     def lte_config_downlink_power_levels(self, init_s):
         logger = logging.getLogger('AnritsuLteBler.lte_config_downlink_power_levels')
         # Configure DL Power Level for PCC
-        self._param_write("PDCCHPWR", init_s.pcc.rsepre, 'pcc.rsepre') #PDCCCH power=-30~0 dB
+        self._param_write("PSSPWR", self.pcc_config.pss_poffest, 'pcc_pss.pwroffs') #PSS POWER -30 TO 0 DB
+        self._param_write("SSSPWR", self.pcc_config.sss_poffest,'pcc_sss.pwroffs') #SSS POWER
+        self._param_write("PBCHPWR", self.pcc_config.pbch_poffest,'pcc_PBCH.pwroffs')
+        self._param_write("PCFICHPWR", self.pcc_config.pcfich_poffest, 'pcc_pcfich.pwroffs')
+        self._param_write("PHICHPWR", self.pcc_config.phich_poffest, 'pcc_phich.pwroffs')
+        self._param_write("PDCCHPWR", self.pcc_config.pdcch_poffest, 'pcc_pdcch.pwroffs')
+        self._param_write("OLVL_EPRE", init_s.pcc.rsepre, 'pcc.rsepre') #OLVL RSEPRE power
         self._param_write('OCNG_IDLE', self.pcc_config.ocng,'pcc_ocng_idel')
-
+        self._param_write("PDSCH_P_A", self.Anritsu_LTE_PA[init_s.pcc.pa], 'pcc.pa')
+        self._param_write("PDSCH_P_B", init_s.pcc.pb,'pcc.pb')
         if not init_s.scc is None:
             self._param_write("OLVL_EPRE", init_s.scc.rsepre, 'scc.rsepre')
             self._param_write("OCNG_CON", self.scc_config.ocng, 'scc_ocng_con')
@@ -353,7 +396,7 @@ class AnritsuLte(Anritsu):
         self._param_write("BAND", self.Anritsu_LTE_RFBAND[init_s.pcc.rfband], 'pcc.rfband')
         self._param_write("DLFREQ", init_s.pcc.earfcn, 'pcc.earfcn')
         self._param_write("CELLID", self.pcc_config.cellid, 'pcc.cellID')
-        self._param_write("BANDWIDTH", self.Anritsu_LTE_BWMHZ[init_s.pcc.bwmhz], 'pcc bwmhz')
+        self._param_write("BANDWIDTH_PCC", self.Anritsu_LTE_BWMHZ[init_s.pcc.bwmhz], 'pcc bwmhz')
         if not init_s.scc is None:
             logger.error("Configuration not supported yet : %s" % init_s.scc)
             sys.exit(CfgError.ERRCODE_TEST_PARAM_INVALID)
