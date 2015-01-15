@@ -396,7 +396,7 @@ class AnritsuLte(Anritsu):
         self._param_write("BAND", self.Anritsu_LTE_RFBAND[init_s.pcc.rfband], 'pcc.rfband')
         self._param_write("DLFREQ", init_s.pcc.earfcn, 'pcc.earfcn')
         self._param_write("CELLID", self.pcc_config.cellid, 'pcc.cellID')
-        self._param_write("BANDWIDTH_PCC", self.Anritsu_LTE_BWMHZ[init_s.pcc.bwmhz], 'pcc bwmhz')
+        self._param_write("BANDWIDTH", self.Anritsu_LTE_BWMHZ[init_s.pcc.bwmhz], 'pcc bwmhz')
         if not init_s.scc is None:
             logger.error("Configuration not supported yet : %s" % init_s.scc)
             sys.exit(CfgError.ERRCODE_TEST_PARAM_INVALID)
