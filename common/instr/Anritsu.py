@@ -142,9 +142,14 @@ class Anritsu(object):
 
         else:
 
-            res = 0 if (param in str(readback)) else 0
+            res = 0 if (param in str(readback)) else 1
 
         logger.debug("CHECKPOINT %-15s : %s (%s, readback=%s)" % (param_tag, ('FAIL' if res else 'PASS'), param, readback))
+        import msvcrt as m
+        '''
+        if res==1:
+            print cmd,param,readback, m.getch()
+        '''
 
         self.param_check += res
 

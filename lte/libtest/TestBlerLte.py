@@ -315,7 +315,7 @@ def TestBlerLte(testconf_s, testunit_s):
                 # Initialise test current test structure
                 testbler_s.struct_teststep_init(param_subtest=1, param_config=1, param_sweep=1)
                 # Update configurations parameters for attach
-                testbler_s.struct_teststep_update(param_subtest=1, param_config=1, param_sweep=0)
+                testbler_s.struct_teststep_update(param_subtest=1, param_config=1, param_sweep=1)
                 # Set default parameters for attach
                 testbler_s.struct_teststep_update_defaults()
                 

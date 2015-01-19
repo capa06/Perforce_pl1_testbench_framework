@@ -191,7 +191,7 @@ class AnritsuLte(Anritsu):
         logger = logging.getLogger("%s._checkpoint_init" % self.name)
         # Summary
         logger.info("*****************************************************************************************")
-        logger.info("CHECKPOINT for Anritsu500 configuration : %s" % ('FAIL' if self.param_check else 'PASS'))
+        logger.info("CHECKPOINT for Anritsu configuration : %s" % ('FAIL' if self.param_check else 'PASS'))
         logger.info("*****************************************************************************************")
         if self.param_check:
             sys.exit(CfgError.ERRCODE_SYS_Anritsu_PARAM_CHECK)

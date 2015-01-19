@@ -375,7 +375,7 @@ class AnritsuLte(Anritsu):
 
     def lte_config_security(self, init_s):
         logger = logging.getLogger("%s.lte_config_security" % self.name)
-        self._param_write('AUTHENT','on','Authentication on')
+        self._param_write('AUTHENT','ON','Authentication ON')
         self._param_write("AUTHENT_ALGO", "XOR", 'XOR')
         self._param_write("INTEGRITY", "SNOW3G", 'Snow3G')
         logger.info("CONFIGURED security mode")
@@ -499,6 +499,13 @@ class AnritsuLte(Anritsu):
 
     def lte_config_scheduler(self, init_s):
         logger = logging.getLogger("%s.lte_config_scheduler" % self.name)
+        self._param_write('ULIMCS',init_s.pcc.ulmcs,'ul mcs')
+        self._param_write('ULRB_START',init_s.pcc.ulrbstart,'ULBR Start')
+        self._param_write('DLIMCS1',init_s.pcc.dlmcs,'dl mcs')
+        self._param_write('DLIMCS2',init_s.pcc.dlmcs,'dl mcs')
+        self._param_write('DLIMCS3',init_s.pcc.dlmcs,'dl mcs')
+
+        '''
         self.write('ULIMCS 5')
         #self.write('ULRMC_RB 50')
         self.write('ULRB_START 0')
@@ -507,9 +514,10 @@ class AnritsuLte(Anritsu):
         self.write('DLIMCS3 15')
 
         #from cfg_lte import GetDLModulation, GetULModulation, LTE_DL_IMCS_2_ITBS_QM, LTE_UL_IMCS_2_ITBS_QM
-        #print init_s.pcc.dlnprb, init_s.pcc.dlrbstart
+        print init_s.pcc.snr, init_s.param_sweep_iter.pcc.dlmcs,init_s.pcc.bwmhz,init_s.pcc.rsepre
+        '''
         #self.LTE_MOD[GetDLModulation(init_s.pcc.dlmcs)], LTE_DL_IMCS_2_ITBS_QM[init_s.pcc.dlmcs][0]
-        #self.insert_pause(10)
+
         logger.info("CONFIGURED scheduling information")
 
 

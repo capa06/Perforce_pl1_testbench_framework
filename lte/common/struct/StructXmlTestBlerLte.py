@@ -49,6 +49,8 @@ from StructXml import StructXml
 from StructXmlTestUnitLte import StructXmlTestUnitLte
 from StructXmlTestStepLte import StructXmlTestStepLte
 from StructXmlCsvReportBlerLte import StructXmlCsvReportBlerLte
+import msvcrt as m
+
 
 
 
@@ -351,7 +353,8 @@ class StructXmlTestBlerLte(object):
                                                 for pcc_ulrbstart_idx in range(len(self.testunit_s.pcc.ulrbstart[self.param_subtest_iter.pcc.bwmhz])):
                                                     self.param_sweep_iter.pcc.ulrbstart=self.testunit_s.pcc.ulrbstart[self.param_subtest_iter.pcc.bwmhz][pcc_ulrbstart_idx]
                                                                                     
-                                                    yield self.param_sweep_iter           
+                                                    yield self.param_sweep_iter
+
     
 
     def compute_total_steps(self):
@@ -443,6 +446,7 @@ class StructXmlTestBlerLte(object):
         
         if param_subtest:
             # Update subtest parameters
+
             self.teststep_s.pcc.dmode     = self.param_subtest_iter.pcc.dmode
             self.teststep_s.pcc.cp        = self.param_subtest_iter.pcc.cp
             self.teststep_s.pcc.chtype    = self.param_subtest_iter.pcc.chtype
@@ -451,7 +455,8 @@ class StructXmlTestBlerLte(object):
             self.teststep_s.pcc.dlulconf  = self.param_subtest_iter.pcc.dlulconf
             self.teststep_s.pcc.ssconf    = self.param_subtest_iter.pcc.ssconf
             self.teststep_s.pcc.nhrtx     = self.param_subtest_iter.pcc.nhrtx
-            self.teststep_s.pcc.riv       = self.param_subtest_iter.pcc.riv        
+            self.teststep_s.pcc.riv       = self.param_subtest_iter.pcc.riv
+
             if not self.testunit_s.scc is None:
                 self.teststep_s.scc.dmode    = self.param_subtest_iter.scc.dmode
                 self.teststep_s.scc.cp       = self.param_subtest_iter.scc.cp
@@ -483,6 +488,7 @@ class StructXmlTestBlerLte(object):
 
         if param_sweep:                
             # Update sweep parameters
+            print 'update',
             self.teststep_s.pcc.earfcn    = self.param_sweep_iter.pcc.earfcn
             self.teststep_s.pcc.rsepre    = self.param_sweep_iter.pcc.rsepre
             self.teststep_s.pcc.doppler   = self.param_sweep_iter.pcc.doppler
@@ -505,7 +511,7 @@ class StructXmlTestBlerLte(object):
                 self.teststep_s.scc.ulnprb    = self.param_sweep_iter.scc.ulnprb
                 self.teststep_s.scc.ulrbstart = self.param_sweep_iter.scc.ulrbstart
             logger.debug("Updated sweep parameters")
-
+        #print self.param_sweep_iter.pcc.dlmcs,self.teststep_s.pcc.dlmcs,m.getch()
     
     def struct_teststep_update_defaults(self):
         logger=logging.getLogger('%s.struct_teststep_update_defaults' % self.STRUCTNAME)
