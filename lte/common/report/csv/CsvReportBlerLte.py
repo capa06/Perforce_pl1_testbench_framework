@@ -264,18 +264,18 @@ class CsvReportBlerLte(CsvReport):
     def report_update_meas_dlthr(self, meas_dlthr_s):
         logger=logging.getLogger('%s.report_update_measdlthr' % self.report_name)
         self.entry_header_s.meas_dlthr.dlthr_cw1 = meas_dlthr_s.dlthr_cw1
-        self.entry_header_s.meas_dlthr.dlthr_cw2 = meas_dlthr_s.dlthr_cw2
+        #self.entry_header_s.meas_dlthr.dlthr_cw2 = meas_dlthr_s.dlthr_cw2
         logger.debug("UPDATED meas_dlthr")
          
     def report_update_meas_rank(self, meas_rank_s):
         logger=logging.getLogger('%s.report_update_meas_rank' % self.report_name)
-        self.entry_header_s.meas_rank.rank = meas_rank_s.rank
+        #self.entry_header_s.meas_rank.rank = meas_rank_s.rank
         logger.debug("UPDATED meas_rank")
 
     def report_update_meas_cqi(self, meas_cqi_s):
         logger=logging.getLogger('%s.report_update_meas_cqi' % self.report_name)
-        self.entry_header_s.meas_cqi.cqi_cw1 = meas_cqi_s.cqi_cw1
-        self.entry_header_s.meas_cqi.cqi_cw2 = meas_cqi_s.cqi_cw2
+        #self.entry_header_s.meas_cqi.cqi_cw1 = meas_cqi_s.cqi_cw1
+        #self.entry_header_s.meas_cqi.cqi_cw2 = meas_cqi_s.cqi_cw2
         logger.debug("UPDATED meas_cqi")
 
     def report_update_meas_pmi(self, meas_pmi_s):

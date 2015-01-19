@@ -62,6 +62,7 @@ from StructXmlTestBlerLte import StructXmlTestBlerLte
 
 
 from CmwLte import CmwLte
+from AnritsuLte import AnritsuLte
 from PsuBench import PsuBench
 from Scdu import scduOff, scduOn
 
@@ -198,10 +199,23 @@ def TestBlerLte(testconf_s, testunit_s):
 
         # Connect to the tester
         # ................................................................
+        if re.match('[a|A][n|N][r|R][i|I][t|T][s|S][u|U]', testconf_s.testername, re.I| re.M):
+            logger.info("Selected tester : %s@%s" % (testconf_s.testername, testconf_s.testerip))
+            xmlfile_Anritsu_config = os.sep.join(os.environ['PL1TESTBENCH_ROOT_FOLDER'].split(os.sep)[:]+['lte', 'common', 'instr', 'structxml_Anritsu_lte_config.xml'])
+            tester_h = AnritsuLte(name=testconf_s.testername, ip_addr=testconf_s.testerip, rat=testunit_s.common.rat.lower(), xmlfile_config=xmlfile_Anritsu_config)
+
+            insertPause(2)
+            # Retrieve and check CMW firmware version
+            tester_h.lte_cell_off()
+            tester_h.preset()
+            tester_info = tester_h.check_sw_version()
+            logger.info("Anritsu INFO : %s" % tester_info)
+
         if re.match('[c|C][m|M][w|W500]', testconf_s.testername, re.I| re.M):
             logger.info("Selected tester : %s@%s" % (testconf_s.testername, testconf_s.testerip))
             xmlfile_cmw500_config = os.sep.join(os.environ['PL1TESTBENCH_ROOT_FOLDER'].split(os.sep)[:]+['lte', 'common', 'instr', 'structxml_cmw500_lte_config.xml'])    
             tester_h = CmwLte(name=testconf_s.testername, ip_addr=testconf_s.testerip, rat=testunit_s.common.rat.lower(), xmlfile_config=xmlfile_cmw500_config)
+
             insertPause(2)
             # Retrieve and check CMW firmware version
             tester_h.lte_cell_off()
@@ -403,9 +417,9 @@ def TestBlerLte(testconf_s, testunit_s):
                             prev_scc_earfcn=int(testbler_s.teststep_s.scc.earfcn)
                     
                     tester_h.lte_config_rsepre(testbler_s.teststep_s)
-                    tester_h.lte_config_doppler(testbler_s.teststep_s)
+                    #tester_h.lte_config_doppler(testbler_s.teststep_s)
                     tester_h.lte_config_snr(testbler_s.teststep_s)
-                    tester_h.lte_update_scheduler(testbler_s.teststep_s)
+                    #tester_h.lte_update_scheduler(testbler_s.teststep_s)
                     tester_h.checkpoint()
                          
                     # Read power levels
@@ -461,10 +475,10 @@ def TestBlerLte(testconf_s, testunit_s):
                                         
                                 csvreport_h.report_update_meas_bler(eval("tester_h.meas_dlbler_s.%s" % carrier.lower()), eval("tester_h.meas_ulbler_s.%s" % carrier.lower()))
                                 csvreport_h.report_update_meas_dlthr(eval("tester_h.meas_dlthr_s.%s" % carrier.lower()))
-                                csvreport_h.report_update_meas_rank(eval("tester_h.meas_rank_s.%s" % carrier.lower()))
-                                csvreport_h.report_update_meas_cqi(eval("tester_h.meas_cqi_s.%s" % carrier.lower()))
-                                csvreport_h.report_update_meas_pmi(eval("tester_h.meas_pmi_s.%s" % carrier.lower()))
-                                csvreport_h.report_update_meas_harq(eval("tester_h.meas_harq_s.%s" % carrier.lower()))
+                                #csvreport_h.report_update_meas_rank(eval("tester_h.meas_rank_s.%s" % carrier.lower()))
+                                #csvreport_h.report_update_meas_cqi(eval("tester_h.meas_cqi_s.%s" % carrier.lower()))
+                                #csvreport_h.report_update_meas_pmi(eval("tester_h.meas_pmi_s.%s" % carrier.lower()))
+                                #csvreport_h.report_update_meas_harq(eval("tester_h.meas_harq_s.%s" % carrier.lower()))
                          
 #                                # TODO: Table SNR update (CQI scheduler?)
 #                                # --------------------------------------------------------------------------- 

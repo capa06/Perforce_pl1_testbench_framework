@@ -1,6 +1,6 @@
 <testplan>
 	<testlist>
-		<field name='testunit_0000000100'>"lte/common/testplan/units_fdd/lte_fdd_percl/testid_0000000100_lte_fdd_percl_rfband_01_bwkhz_01400_sched_udch_nhrtx_None_chtype_None.xml"</field>
+		<!-- <field name='testunit_0000000100'>"lte/common/testplan/units_fdd/lte_fdd_percl/testid_0000000100_lte_fdd_percl_rfband_01_bwkhz_01400_sched_udch_nhrtx_None_chtype_None.xml"</field> -->
 		<field name='testunit_0000000101'>"lte/common/testplan/units_fdd/lte_fdd_percl/testid_0000000101_lte_fdd_percl_rfband_01_bwkhz_03000_sched_udch_nhrtx_None_chtype_None.xml"</field>
 		<field name='testunit_0000000102'>"lte/common/testplan/units_fdd/lte_fdd_percl/testid_0000000102_lte_fdd_percl_rfband_01_bwkhz_05000_sched_udch_nhrtx_None_chtype_None.xml"</field>
 		<field name='testunit_0000000103'>"lte/common/testplan/units_fdd/lte_fdd_percl/testid_0000000103_lte_fdd_percl_rfband_01_bwkhz_10000_sched_udch_nhrtx_None_chtype_None.xml"</field>

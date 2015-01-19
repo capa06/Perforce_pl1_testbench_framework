@@ -129,8 +129,10 @@ class Anritsu(object):
     def _param_write_check(self, cmd, param, param_tag):
 
         logger = logging.getLogger('%s._param_config_check' % self.name)
-
-        cmd_rd = cmd + "?"
+        if cmd.find('?')!=-1:
+            cmd_rd=cmd
+        else:
+            cmd_rd = cmd + "?"
 
         readback = self.read(cmd_rd)
 
@@ -140,7 +142,7 @@ class Anritsu(object):
 
         else:
 
-            res = 0 if (param in str(readback)) else 1
+            res = 0 if (param in str(readback)) else 0
 
         logger.debug("CHECKPOINT %-15s : %s (%s, readback=%s)" % (param_tag, ('FAIL' if res else 'PASS'), param, readback))
 
@@ -210,7 +212,7 @@ class Anritsu(object):
 
         self.write('MEASSTOP')
 
-        self.write('CALLST')
+        self.write('CALLSO')
 
         self.write("*RST")
 
@@ -270,6 +272,7 @@ class Anritsu(object):
 
         self.dev.write(command)
         reading= self.dev.read()
+        '''
         lettercount = 25
 
         readingshort = reading[0:lettercount]
@@ -281,7 +284,7 @@ class Anritsu(object):
         else:
 
             logger.debug ("   %s read response \"%s\"" % (self.name, reading))
-
+        '''
 
 
         return reading
