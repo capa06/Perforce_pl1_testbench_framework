@@ -11,7 +11,6 @@ import traceback
 import re
 
 
-
 # =============================================================================
 # DEFINE LOCAL PATHS 
 # =============================================================================
@@ -204,13 +203,14 @@ if __name__ == '__main__':
     
     # Configure logging
     from cfg_multilogging import cfg_multilogging
+
     loglevel = 'DEBUG'
-    logname  = logname= os.path.splitext(os.path.basename(__file__))[0]
+    logname= os.path.splitext(os.path.basename(__file__))[0]
     logfile  = logname  + '.LOG'
     cfg_multilogging(loglevel, logfile)
     logger=logging.getLogger(logname)
     
-    file_csv=os.path.join(os.environ['PL1TESTBENCH_ROOT_FOLDER'], 'common', 'report', 'xml', 'LTE_FDD_CMW500_TestReport_SUMMARY.csv')
+    file_csv=os.path.join(os.environ['PL1TESTBENCH_ROOT_FOLDER'], 'common', 'report', 'xml', 'LTE_FDD_%s_TestReport_SUMMARY.csv')
     if 0:
         report_xml_h = XmlReportSummary(file_csv)
         report_xml_h.open()

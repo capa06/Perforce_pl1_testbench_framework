@@ -101,7 +101,7 @@ def TestbenchLTE(testconfig_s):
                 
         # Configure CVS report
         #csv_f='%s_CMW500_TestReport_SUMMARY.csv' % testconfig_s.rat
-        csv_abs_f= os.sep.join(dir_curr.split(os.sep)[:]+['%s_CMW500_TestReport_SUMMARY.csv' % testconfig_s.rat])
+        csv_abs_f= os.sep.join(dir_curr.split(os.sep)[:]+['%s_%s_TestReport_SUMMARY.csv' % (testconfig_s.rat,testconfig_s.testername)])
         csv_report=CsvReportSummary(csv_abs_f)
         logger.debug("CSV Test Summary File : %s" % csv_abs_f)
         
@@ -136,13 +136,13 @@ def TestbenchLTE(testconfig_s):
                     break
                 else:
                     func=func_test_table[testunit_s.common.testtype]
-                    logger.debug("Calling %s..." % func)                    
+                    logger.debug("Calling %s..." % func)
                     result = func(testconfig_s, testunit_s)     
 
                 # Break if the test execution was completed
                 if result in [CfgError.ERRCODE_TEST_PASS, CfgError.ERRCODE_TEST_FAILURE, CfgError.ERRCODE_TEST_FAILURE_REFTHR, CfgError.ERRCODE_TEST_FAILURE_INCONCLUSIVE]: 
                     break
-            
+
             # Update test exit state            
             if (state==CfgError.ERRCODE_TEST_PASS) and  (not result==CfgError.ERRCODE_TEST_PASS):            
                 state = CfgError.ERRCODE_TEST_FAILURE if (not result==CfgError.ERRCODE_TEST_FAILURE_INCONCLUSIVE) else result

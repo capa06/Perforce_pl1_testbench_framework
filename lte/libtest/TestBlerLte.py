@@ -271,7 +271,10 @@ def TestBlerLte(testconf_s, testunit_s):
         report_dir          = os.sep.join(os.environ['PL1TESTBENCH_ROOT_FOLDER'].split(os.sep)[:]+['lte','results', 'current'])
         
         # Save test configuration into a file
-        report_fileconf_txt = os.path.join(report_dir, '%s_CMW500_TestConf_testID_%05d.txt' % (testunit_s.common.rat, testunit_s.common.testid))
+        if re.match('[a|A][n|N][r|R][i|I][t|T][s|S][u|U]', testconf_s.testername, re.I| re.M):
+            report_fileconf_txt = os.path.join(report_dir, '%s_Anritsu_TestConf_testID_%05d.txt' % (testunit_s.common.rat, testunit_s.common.testid))
+        else:
+            report_fileconf_txt = os.path.join(report_dir, '%s_CMW500_TestConf_testID_%05d.txt' % (testunit_s.common.rat, testunit_s.common.testid))
         txtreport_h         = TxtReportConfig(report_fileconf_txt)
         txtreport_h.append_tlv('timestamp', time.strftime("%Y/%m/%d %H:%M:%S", time.localtime()))
         txtreport_h.append_test_configuration(testunit_s)
@@ -279,7 +282,10 @@ def TestBlerLte(testconf_s, testunit_s):
         txtreport_h.append_tlv('tester_info', tester_info)
         
         # Config and measurement reports
-        report_filemeas_csv = os.path.join(report_dir, '%s_CMW500_TestMeas_testID_%05d.csv' % (testunit_s.common.rat, testunit_s.common.testid))
+        if re.match('[a|A][n|N][r|R][i|I][t|T][s|S][u|U]', testconf_s.testername, re.I| re.M):
+            report_filemeas_csv = os.path.join(report_dir, '%s_Anritsu_TestMeas_testID_%05d.csv' % (testunit_s.common.rat, testunit_s.common.testid))
+        else:
+            report_filemeas_csv = os.path.join(report_dir, '%s_CMW500_TestMeas_testID_%05d.csv' % (testunit_s.common.rat, testunit_s.common.testid))
         csvreport_h         = CsvReportBlerLte(report_filemeas_csv,  pwrmeas=testconf_s.pwrmeas, statistics=1)
         csvreport_h.append_entry_header()
         
@@ -557,14 +563,14 @@ def TestBlerLte(testconf_s, testunit_s):
                         return_state=int('%s' % exc_info[1])
                         if return_state==CfgError.ERRCODE_SYS_CMW_INVMEAS:
                             logger.warning("-------------------------------------------------------")                        
-                            logger.warning("CMW500_INVALID_MEASUREMENTS. Skipping to next iteration")
+                            logger.warning("%s_INVALID_MEASUREMENTS. Skipping to next iteration" % testconf_s.testername)
                             logger.warning("-------------------------------------------------------")                                                
                             tester_h.reset()
                             tester_h.lte_cell_off()
                             break
                         elif return_state==CfgError.ERRCODE_SYS_CMW_TIMEOUT:
                             logger.warning("-------------------------------------------------------------")                        
-                            logger.warning("CMW500 NOT PRODUCING MEASUREMENTS. Skipping to next iteration")
+                            logger.warning("%s NOT PRODUCING MEASUREMENTS. Skipping to next iteration" % testconf_s.testername)
                             logger.warning("-------------------------------------------------------------")                                                
                             tester_h.reset()
                             tester_h.lte_cell_off()

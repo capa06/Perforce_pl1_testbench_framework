@@ -805,7 +805,7 @@ class AnritsuLte(Anritsu):
         self._param_write("TPUT_MEAS", "ON", 'Throughput Measurement ON')
         self._param_write("CQI_MEAS", "ON", 'CQI Measurement ON')
         self._param_write("TPUT_SAMPLE", self.meas.period_nsf, 'Number of Sample')
-        self.write('MOD_MEAS OFF')
+        #self.write('MOD_MEAS OFF')
 
         # Wait for measurements RDY
         num_iter, NUM_ITER_MAX = 0, int(math.ceil(self.meas.timeout/self.meas.check))
@@ -817,7 +817,10 @@ class AnritsuLte(Anritsu):
             logger.debug("FETCHING DLBLER MEAS: iteration %d of %d" % (num_iter, NUM_ITER_MAX))
             state=self.read("MSTAT?")
             logger.debug("FETCH STATE : %s" % state)
-            if (state == '0') : break
+            if (state == '0') :
+                break
+            elif(state!='9' and state!='2'):
+                self.lte_dut_attach()
 
         if num_iter==NUM_ITER_MAX:
             logger.error("Anritsu not responding to query on measurements")
