@@ -99,7 +99,8 @@ class Anritsu(object):
         self.ip_addr = ip_addr
 
         logging.debug ('init-routine')
-        ip_socket='TCPIP0::'+ip_addr+'::56001::SOCKET'
+        #ip_socket='TCPIP0::'+ip_addr+'::56001::SOCKET' ##For Lan connection
+        ip_socket='TCPIP0::'+ip_addr+'::gpib0,1::INSTR' ##For gpib connection
         rm = visa.ResourceManager()
         self.dev=rm.open_resource(ip_socket,read_termination='\n')
         self.dev.write("*CLS")
