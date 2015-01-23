@@ -85,6 +85,7 @@ class AnritsuLte(Anritsu):
                                  41:'41',44:'44'}
 
     #LTE_CFI_2_RPDCCH = {1:'ON', 2:'OFF', 3:'OFF'}
+    LTE_CFI={1.4:'4',3:'2',5:'2',10:'1',15:'1',20:'1'}
     LTE_NPRB0 = {1.4:3, 3:6, 5:6, 10:6, 15:12, 20:12}
     LTE_CQI_REPORTING = {"RMC":"PER", "UDCH":"PER", "UDTT":"PER", "CQI,FWB":"PER", "CQI,FCPR":"PER", "CQI,FCRI":"PER" }
 
@@ -383,7 +384,6 @@ class AnritsuLte(Anritsu):
 
     def lte_config_rf(self, init_s):
         logger = logging.getLogger("%s._config_rf" % self.name)
-
         self._param_write("BAND", self.LTE_RFBAND[init_s.pcc.rfband], 'pcc.rfband')
         self._param_write("DLCHAN", init_s.pcc.earfcn, 'pcc.earfcn')
         self._param_write("CELLID", self.pcc_config.cellid, 'pcc.cellID')
@@ -403,13 +403,11 @@ class AnritsuLte(Anritsu):
         self._param_write('TPCPAT','AUTO','power contronl patern: AUTO')
         self._param_write('POWOFFSET','0.0','power control offset: 0.0')
         self._param_write('MAXULPWR',self.common_config.pmax,'Pmax')
-
         logger.info("CONFIGURED uplink power control")
 
 
     def lte_config_connection(self, init_s):
         logger = logging.getLogger("%s.lte_config_connection" % self.name)
-
         self._param_write('GROUPHOP',self.common_config.ghopping,'group hopping')
         self._param_write("UECAT", 'CAT'+str(self.common_config.uecat), 'uecat') #value=CAT1 to CAT7
         #self._param_write("UE_CAT? FLAG", self.common_config.uecat_reported, 'uecat report')
@@ -427,10 +425,10 @@ class AnritsuLte(Anritsu):
 
     def lte_config_cfi(self, init_s):
         logger = logging.getLogger("%s.lte_config_cfi" % self.name)
-
-        #logger.info("PCC reduced PDCCH : %s" % self.LTE_CFI_2_RPDCCH[LTE_BW_MHZ_2_CFIMIN[init_s.pcc.bwmhz]])
-        #if not init_s.scc is None:
-            #logger.info("SCC reduced PDCCH : %s" % self.LTE_CFI_2_RPDCCH[LTE_BW_MHZ_2_CFIMIN[init_s.scc.bwmhz]])
+        self._param_write('CFI',self.LTE_CFI[init_s.pcc.bwmhz],'pcc cfi pattern')
+        logger.info("PCC reduced PDCCH : %s" % self.LTE_CFI[init_s.pcc.bwmhz])
+        if not init_s.scc is None:
+            logger.info("SCC reduced PDCCH : %s" % self.LTE_CFI_2_RPDCCH[LTE_BW_MHZ_2_CFIMIN[init_s.scc.bwmhz]])
 
         logger.info("CONFIGURED CFI")
 
@@ -811,7 +809,6 @@ class AnritsuLte(Anritsu):
         num_iter, NUM_ITER_MAX = 0, int(math.ceil(self.meas.timeout/self.meas.check))
         while ( num_iter < NUM_ITER_MAX ):                                                                                                                                    # Initialise and start BLER measurements
             num_iter += 1
-            #self.write('MEASSTOP')
             self.write("S2")
             self.insert_pause(self.meas.check)
             logger.debug("FETCHING DLBLER MEAS: iteration %d of %d" % (num_iter, NUM_ITER_MAX))
@@ -819,8 +816,13 @@ class AnritsuLte(Anritsu):
             logger.debug("FETCH STATE : %s" % state)
             if (state == '0') :
                 break
-            elif(state!='9' and state!='2'):
-                self.lte_dut_attach()
+            elif(state=='5'):
+                call_state=self.read('CALLSTAT?')
+                if(call_state=='1'):
+                    self.lte_dut_attach()
+                    self.lte_dut_connect()
+                elif(call_state=='2'):
+                    self.lte_dut_connect()
 
         if num_iter==NUM_ITER_MAX:
             logger.error("Anritsu not responding to query on measurements")
@@ -908,7 +910,8 @@ class AnritsuLte(Anritsu):
 
     def _lte_compute_average_dlthr_per_cw(self, meas):
         #logger = logging.getLogger('%s._lte_compute_average_dlthr_per_cw' % self.name)
-        dlthr_avrg_Mbps = float(self.read('TPUT?'))*0.001
+        #dlthr_avrg_Mbps = float(self.read('TPUT?'))*0.001
+        dlthr_avrg_Mbps=meas
         '''
         meas_l = meas.split(' ')[1:]
         dlthr_l = [float(x) for x in meas_l[1::2]]

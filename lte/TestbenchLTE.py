@@ -35,15 +35,18 @@ sys.path.append(os.sep.join(os.environ['PL1TESTBENCH_ROOT_FOLDER'].split(os.sep)
 
 
 
+
 # ********************************************************************
 # GLOBAL VARIABLES HERE
 # ********************************************************************
 ts=time.strftime("%Y%m%d_%H%M%S", time.localtime())
+get_testername='_'
+
 
 # Test report folders: current is renamed to final
 dir_curr   = os.sep.join(os.environ['PL1TESTBENCH_ROOT_FOLDER'].split(os.sep)[:]+['lte', 'results', 'current'])
 dir_latest = os.sep.join(os.environ['PL1TESTBENCH_ROOT_FOLDER'].split(os.sep)[:]+['lte', 'results', 'latest'])
-dir_final  = os.sep.join(os.environ['PL1TESTBENCH_ROOT_FOLDER'].split(os.sep)[:]+['lte', 'results', ts+'_CMW500_TestReport'])
+dir_final  = os.sep.join(os.environ['PL1TESTBENCH_ROOT_FOLDER'].split(os.sep)[:]+['lte', 'results', ts+'_%s_TestReport'% get_testername])
 
 
 # ********************************************************************
@@ -89,9 +92,11 @@ func_test_table={'LTE_FDD_PERCL_BLER'            : TestBlerLte,
 
 def TestbenchLTE(testconfig_s):
     logger=logging.getLogger('TestbenchLte')
-
     state = CfgError.ERRCODE_TEST_PASS
-    
+    global get_testername
+    get_testername = testconfig_s.testername
+    global dir_final
+    dir_final  = os.sep.join(os.environ['PL1TESTBENCH_ROOT_FOLDER'].split(os.sep)[:]+['lte', 'results', ts+'_%s_TestReport'% testconfig_s.testername])
     try:         
         # Clean any dir_curr from previous run
         if os.path.exists(dir_curr):
@@ -192,6 +197,7 @@ def TestbenchLTE(testconfig_s):
     shutil.rmtree(dir_curr)
             
     return (state)
+
 
 # ********************************************************************
 #                            MAIN
